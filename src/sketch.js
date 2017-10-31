@@ -11,7 +11,6 @@ export default function sketch (p) {
     var foodCount = 0;
     let predatorCount = 0;
     let preyCount = 0;
-    let simulateWorld = true;
     let world;
 
     p.setup = function (props) {
@@ -39,9 +38,7 @@ export default function sketch (p) {
 
     p.draw = function() {
         p.background(175);
-        if(simulateWorld){
-            world.run();
-        }
+        world.run();
     }
 
 // We can add a creature manually if we so desire
