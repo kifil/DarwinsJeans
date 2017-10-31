@@ -32,7 +32,7 @@ export default function Bloop(p, l, dna_) {
         // Are we touching any food objects?
         for (var i = food.length-1; i >= 0; i--) {
             var foodLocation = food[i];
-            var d = p.dist(this.position, foodLocation);
+            var d = p5.Vector.dist(this.position, foodLocation);
             // If we are, juice up our strength!
             if (d < this.r/2) {
                 this.health += 100;
@@ -82,8 +82,8 @@ export default function Bloop(p, l, dna_) {
     // Method to display
     this.display = function() {
         p.ellipseMode(p.CENTER);
-        p.stroke(0,this.health);
-        p.fill(0, this.health);
+        p.stroke(0,255);
+        p.fill(255, this.health, 0, 255);
         p.ellipse(this.position.x, this.position.y, this.r, this.r);
     }
 
