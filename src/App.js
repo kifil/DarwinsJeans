@@ -24,13 +24,24 @@ class App extends Component {
         };
 
         this.changeCountByKey = this.changeCountByKey.bind(this);
-    }
+        this.startSim = this.startSim.bind(this);
+    };
 
     changeCountByKey(key, event){
         this.setState({[key]: ~~event.target.value});
-    }
+    };
+
+    startSim(isRunning, event){
+        // TODO: keep track of run time?
+        this.setState({isRunning: isRunning});
+    };
 
     render() {
+        var startStopButton = this.state.isRunning
+            ? <Button className="center-block" bsStyle="primary" onClick={this.startSim.bind(this, false)}>Stop.</Button>
+            : <Button className="center-block" bsStyle="primary" onClick={this.startSim.bind(this, true)}>Start!</Button>
+        ;
+
         return (
             <div>
                 <div className="App">
@@ -87,7 +98,7 @@ class App extends Component {
                     </div>
                     <div className="row">
                         <div className="col-lg-12">
-                            <Button className="center-block" bsStyle="primary" onClick={this.doStuff}>Start!</Button>
+                            {startStopButton}
                         </div>
                     </div>
                 </div>

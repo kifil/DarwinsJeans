@@ -12,6 +12,7 @@ export default function sketch (p) {
     let predatorCount = 0;
     let preyCount = 0;
     let world;
+    let isRunning = false;
 
     p.setup = function (props) {
         p.createCanvas(800, 800);
@@ -34,11 +35,21 @@ export default function sketch (p) {
         if (props.rotation){
             rotation = props.rotation * Math.PI / 180;
         }
+
+        // Recreate world if sim is currently stopped but set to run
+        if(props.isRunning && isRunning != props.isRunning){
+            p.setup(props);
+        }
+
+        isRunning = props.isRunning;
     };
 
     p.draw = function() {
         p.background(175);
-        world.run();
+
+        if(isRunning){
+            world.run();
+        }
     }
 
 // We can add a creature manually if we so desire
