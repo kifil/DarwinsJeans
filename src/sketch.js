@@ -5,20 +5,33 @@ import World from './world'
 
 //default export means that this is the only thing exported in teh module, this is preferred
 //also means you don't use {} when importing it
+
 export default function sketch (p) {
     let rotation = 0;
+    var foodCount = 0;
+    let predatorCount = 0;
+    let preyCount = 0;
+    let simulateWorld = true;
     let world;
-    let randomNumber = 0;
 
-    p.setup = function () {
-        //p.createCanvas(600, 360, p.WEBGL);
-        p.createCanvas(640, 360);
-        randomNumber = p.random();
-        console.log("random number", randomNumber)
-         world = new World(p, 50);
+    p.setup = function (props) {
+        p.createCanvas(800, 800);
+
+        world = new World(p, foodCount, predatorCount, preyCount);
     };
 
     p.myCustomRedrawAccordingToNewPropsHandler = function (props) {
+        console.log(props);
+
+        if(props.foodCount){
+            foodCount = props.foodCount;
+        }
+        if(props.predatorCount){
+            predatorCount = props.predatorCount;
+        }
+        if(props.preyCount){
+            preyCount = props.preyCount;
+        }
         if (props.rotation){
             rotation = props.rotation * Math.PI / 180;
         }
@@ -26,7 +39,9 @@ export default function sketch (p) {
 
     p.draw = function() {
         p.background(175);
-         world.run();
+        if(simulateWorld){
+            world.run();
+        }
     }
 
 // We can add a creature manually if we so desire

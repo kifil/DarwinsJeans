@@ -37,7 +37,7 @@ class App extends Component {
                     <div className="row">
                         <div className="col-lg-12">
                             <center>
-                                <P5Wrapper sketch={sketch} rotation={45} />
+                                <P5Wrapper sketch={sketch} foodCount = {100} predatorCount = {5} preyCount = {2} />
                             </center>
                         </div>
                     </div>

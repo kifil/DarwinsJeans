@@ -3,13 +3,13 @@ import Bloop from './bloop'
 import DNA from './dna'
 import p5 from 'p5'
 
-export default function World (sketch, initialFoodCount, initialCreatureCount) {
+export default function World (sketch, initialFoodCount, initialPredatorCount, intialPreyCount) {
     //let food = startingFood;
 
     // Start with initial food and creatures
     this.food = new Food(sketch, initialFoodCount);
     this.bloops = [];        // An array for all creatures
-    for (var i = 0; i < initialCreatureCount; i++) {
+    for (var i = 0; i < initialPredatorCount; i++) {
         var l = sketch.createVector(sketch.random(sketch.width), sketch.random(sketch.height));
         var dna = new DNA(sketch);
         this.bloops.push(new Bloop(sketch, l, dna));
