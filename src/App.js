@@ -27,9 +27,7 @@ class App extends Component {
     }
 
     changeCountByKey(key, event){
-        var obj = {};
-        obj[key] = ~~event.target.value;
-        this.setState(obj);
+        this.setState({[key]: ~~event.target.value});
     }
 
     render() {
