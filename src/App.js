@@ -8,63 +8,83 @@ import Button from 'react-bootstrap/lib/Button';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
 import FormControl from 'react-bootstrap/lib/FormControl';
 import ControlLabel from 'react-bootstrap/lib/ControlLabel';
-import HelpBlock from 'react-bootstrap/lib/HelpBlock';
 
 window.axios = axios;
 window.axios.defaults.baseURL = 'http://localhost:8080/';
 
-function FieldGroup({ id, label, help, ...props }) {
-    return (
-        <FormGroup controlId={id}>
-            <ControlLabel>{label}</ControlLabel>
-            <FormControl {...props} />
-            {help && <HelpBlock>{help}</HelpBlock>}
-        </FormGroup>
-    );
-}
-
 class App extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            foodCount: 100,
+            preyCount: 5,
+            predatorCount: 20,
+            isRunning: false,
+        };
+
+        this.changeCountByKey = this.changeCountByKey.bind(this);
+    }
+
+    changeCountByKey(key, event){
+        var obj = {};
+        obj[key] = ~~event.target.value;
+        this.setState(obj);
+    }
+
     render() {
         return (
             <div>
                 <div className="App">
                     <header className="App-header">
                         <img src={logo} className="App-logo" alt="logo" />
-                        <h1 className="App-title">Not Taco Time!</h1>
+                        <h1 className="App-title">Kraken Lunch Time</h1>
                     </header>
                 </div>
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-12">
                             <center>
-                                <P5Wrapper sketch={sketch} foodCount = {100} predatorCount = {5} preyCount = {2} />
+                                <P5Wrapper
+                                    sketch={sketch}
+                                    foodCount = {this.state.foodCount}
+                                    predatorCount = {this.state.predatorCount}
+                                    preyCount = {this.state.preyCount}
+                                    isRunning = {this.state.isRunning}
+                                />
                             </center>
                         </div>
                     </div>
                     <div className="row col-lg-offset-4">
                         <div className="col-lg-2">
-                            <FieldGroup
-                                id="formControlsText"
-                                type="text"
-                                label="Krakens"
-                                placeholder="#Krakens"
-                            />
+                            <FormGroup>
+                                <ControlLabel>Krakens</ControlLabel>
+                                <FormControl
+                                    ref="numKrakens"
+                                    placeholder="#Krakens"
+                                    defaultValue={this.state.predatorCount}
+                                    onChange={this.changeCountByKey.bind(this, "predatorCount")} />
+                            </FormGroup>
                         </div>
                         <div className="col-lg-2">
-                            <FieldGroup
-                                id="formControlsText"
-                                type="text"
-                                label="Ships"
-                                placeholder="#Ships"
-                            />
+                            <FormGroup>
+                                <ControlLabel>Ships</ControlLabel>
+                                <FormControl
+                                    ref="numShips"
+                                    placeholder="#Ships"
+                                    defaultValue={this.state.preyCount}
+                                    onChange={this.changeCountByKey.bind(this, "preyCount")} />
+                            </FormGroup>
                         </div>
                         <div className="col-lg-2">
-                            <FieldGroup
-                                id="formControlsText"
-                                type="text"
-                                label="Fish"
-                                placeholder="#Fish"
-                            />
+                            <FormGroup>
+                                <ControlLabel>Fish</ControlLabel>
+                                <FormControl
+                                    ref="numFish"
+                                    placeholder="#Fish"
+                                    defaultValue={this.state.foodCount}
+                                    onChange={this.changeCountByKey.bind(this, "foodCount")} />
+                            </FormGroup>
                         </div>
                     </div>
                     <div className="row">
