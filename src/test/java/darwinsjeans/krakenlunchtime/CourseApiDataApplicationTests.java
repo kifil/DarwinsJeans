@@ -1,4 +1,4 @@
-package io.javabrains.courseapidata;
+package darwinsjeans.krakenlunchtime;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

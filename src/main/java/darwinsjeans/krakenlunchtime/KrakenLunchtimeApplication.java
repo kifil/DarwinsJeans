@@ -1,4 +1,4 @@
-package io.javabrains.courseapidata;
+package darwinsjeans.krakenlunchtime;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,10 +8,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @SpringBootApplication
-public class CourseApiDataApplication {
+public class KrakenLunchtimeApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CourseApiDataApplication.class, args);
+		SpringApplication.run(KrakenLunchtimeApplication.class, args);
 	}
 
 	@Bean
