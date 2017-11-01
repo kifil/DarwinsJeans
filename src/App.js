@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import logo from './taco.svg';
 import './App.css';
-import axios from 'axios';
 import P5Wrapper from 'react-p5-wrapper';
 import sketch from './sketch'
 import Button from 'react-bootstrap/lib/Button';
@@ -9,13 +8,14 @@ import FormGroup from 'react-bootstrap/lib/FormGroup';
 import FormControl from 'react-bootstrap/lib/FormControl';
 import ControlLabel from 'react-bootstrap/lib/ControlLabel';
 
-window.axios = axios;
-window.axios.defaults.baseURL = 'http://localhost:8080/';
+
 
 class App extends Component {
     constructor(props) {
+        //this super sets the props using react's base component constructor
         super(props);
 
+        //this is how you set state in the constructor
         this.state = {
             foodCount: 100,
             preyCount: 5,
@@ -23,11 +23,14 @@ class App extends Component {
             isRunning: false,
         };
 
+        //need to bind the ensure we get the component as "this" no matter where it is called
         this.changeCountByKey = this.changeCountByKey.bind(this);
         this.startSim = this.startSim.bind(this);
     };
 
     changeCountByKey(key, event){
+        //set state can only be called outside of constructor and render methods
+        //use the on change's new value to set the state
         this.setState({[key]: ~~event.target.value});
     };
 
@@ -105,17 +108,6 @@ class App extends Component {
             </div>
         );
     };
-
-   doStuff() {
-       axios.get('/topics')
-           .then(function (response) {
-               console.log(response);
-           })
-           .catch(function (error) {
-               console.log(error);
-           });
-       return false;
-   };
 };
 
 export default App;

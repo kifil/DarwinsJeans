@@ -9,12 +9,14 @@
 // Create a "bloop" creature
 import p5 from "p5";
 
-export default function Bloop(p, l, dna_) {
+export default function Bloop(p, l, dna_, simulationRunStats) {
     this.position = l.copy();  // Location
     this.health = 200;  // Life timer
     this.xoff = p.random(1000);  // For perlin noise
     this.yoff = p.random(1000);
     this.dna = dna_;   // DNA
+    this.simulationRunStats = simulationRunStats;
+
     // DNA will determine size and maxspeed
     // The bigger the bloop, the slower it is
     this.maxspeed = p.map(this.dna.genes[0], 0, 1, 15, 0);
@@ -35,6 +37,8 @@ export default function Bloop(p, l, dna_) {
             var d = p5.Vector.dist(this.position, foodLocation);
             // If we are, juice up our strength!
             if (d < this.r/2) {
+                //this.foodEaten++;
+                this.simulationRunStats.foodEaten++;
                 this.health += 100;
                 food.splice(i,1);
             }
@@ -49,7 +53,7 @@ export default function Bloop(p, l, dna_) {
             var childDNA = this.dna.copy();
             // Child DNA can mutate
             childDNA.mutate(0.01);
-            return new Bloop(p, this.position, childDNA);
+            return new Bloop(p, this.position, childDNA, this.simulationRunStats);
         }
         else {
             return null;
@@ -68,7 +72,7 @@ export default function Bloop(p, l, dna_) {
 
         this.position.add(velocity);
         // Death always looming
-        this.health -= 0.2;
+        this.health -= 0.50;
     }
 
     // Wraparound
@@ -90,11 +94,10 @@ export default function Bloop(p, l, dna_) {
     // Death
     this.dead = function() {
         if (this.health < 0.0) {
+            this.simulationRunStats.shipDeaths++;
             return true;
         }
-        else {
-            return false;
-        }
+        return false;
     }
 }
 

@@ -3,27 +3,42 @@ import Bloop from './bloop'
 import DNA from './dna'
 import p5 from 'p5'
 
-export default function World (sketch, initialFoodCount, initialPredatorCount, intialPreyCount) {
-    //let food = startingFood;
+export default class World  {
+    sketch = {};
+    simulationRunStats = {};
+    initialFoodCount = 0;
+    initialPredatorCount = 0;
+    initialPreyCount = 0;
 
-    // Start with initial food and creatures
-    this.food = new Food(sketch, initialFoodCount);
-    this.bloops = [];        // An array for all creatures
-    for (var i = 0; i < initialPredatorCount; i++) {
-        var l = sketch.createVector(sketch.random(sketch.width), sketch.random(sketch.height));
-        var dna = new DNA(sketch);
-        this.bloops.push(new Bloop(sketch, l, dna));
+
+    constructor(sketch,simulationRunStats, initialFoodCount, initialPredatorCount, initialPreyCount){
+        this.sketch = sketch;
+        this.simulationRunStats = simulationRunStats;
+        this.initialFoodCount = initialFoodCount;
+        this.initialPredatorCount = initialPredatorCount;
+        this.initialPreyCount = initialPreyCount;
+
+        console.log("simulation run", this.simulationRunStats);
+
+        // Start with initial food and creatures
+        this.food = new Food(sketch, initialFoodCount);
+        this.bloops = [];        // An array for all creatures
+        for (var i = 0; i < initialPredatorCount; i++) {
+            var l = sketch.createVector(sketch.random(sketch.width), sketch.random(sketch.height));
+            var dna = new DNA(sketch);
+            this.bloops.push(new Bloop(sketch, l, dna, this.simulationRunStats));
+        }
     }
 
     // Make a new creature
-    this.born = function(x, y) {
-        var l = sketch.createVector(x, y);
-        var dna = new DNA(sketch);
-        this.bloops.push(new Bloop(sketch, l, dna));
-    }
+    // this.born = function(x, y) {
+    //     var l = sketch.createVector(x, y);
+    //     var dna = new DNA(sketch);
+    //     this.bloops.push(new Bloop(sketch, l, dna));
+    // }
 
     // Run the world
-    this.run = function() {
+    run = function() {
         // Deal with food
         this.food.run();
 
@@ -42,5 +57,18 @@ export default function World (sketch, initialFoodCount, initialPredatorCount, i
             var child = b.reproduce();
             if (child != null) this.bloops.push(child);
         }
-    }
+
+        this.simulationRunStats.worldTicks++;
+    };
+
+    stopRun = function () {
+        // var that = this;
+        // this.simulationRun.foodEaten = 0;
+        // this.bloops.map(function(obj){
+        //     that.simulationRun.foodEaten += obj.foodEaten;
+        // });
+        console.log('this.simulationRunStats', this.simulationRunStats);
+    };
+
+
 }

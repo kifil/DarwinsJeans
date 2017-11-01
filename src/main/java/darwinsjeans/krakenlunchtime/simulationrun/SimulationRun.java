@@ -70,6 +70,14 @@ public class SimulationRun {
         this.finalPopulationShips = finalPopulationShips;
     }
 
+    public Integer getWorldTicks() {
+        return worldTicks;
+    }
+
+    public void setWorldTicks(Integer worldTicks) {
+        this.worldTicks = worldTicks;
+    }
+
     private Integer foodEaten;
     private Integer krakenDeaths;
     private Integer shipDeaths;
@@ -77,11 +85,12 @@ public class SimulationRun {
     private Integer maxPopulationShips;
     private Integer finalPopulationKraken;
     private Integer finalPopulationShips;
+    private Integer worldTicks;
 
     public SimulationRun() {
     }
 
-    public SimulationRun(String id, Integer foodEaten, Integer krakenDeaths, Integer shipDeaths, Integer maxPopulationKraken, Integer maxPopulationShips, Integer finalPopulationKraken, Integer finalPopulationShips) {
+    public SimulationRun(String id, Integer foodEaten, Integer krakenDeaths, Integer shipDeaths, Integer maxPopulationKraken, Integer maxPopulationShips, Integer finalPopulationKraken, Integer finalPopulationShips, Integer worldTicks) {
         this.id = id;
         this.foodEaten = foodEaten;
         this.krakenDeaths = krakenDeaths;
@@ -90,5 +99,6 @@ public class SimulationRun {
         this.maxPopulationShips = maxPopulationShips;
         this.finalPopulationKraken = finalPopulationKraken;
         this.finalPopulationShips = finalPopulationShips;
+        this.worldTicks = worldTicks;
     }
 }
