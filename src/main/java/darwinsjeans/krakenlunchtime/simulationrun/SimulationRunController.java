@@ -20,7 +20,8 @@ public class SimulationRunController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/simruns")
     //request will have json of a simulationRun
-    public void addSimRun(@RequestBody SimulationRun simRun){
+    public void addSimRun(@RequestBody SimulationRun simRun)
+    {
         simulationRunService.addSimRun(simRun);
     }
 }

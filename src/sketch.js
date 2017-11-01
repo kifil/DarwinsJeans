@@ -62,6 +62,14 @@ export default function sketch (p) {
                 .catch(function (error) {
                     console.log(error);
                 });
+
+            axios.get('/simruns')
+                .then(function (response) {
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
         }
 
         isRunning = props.isRunning;

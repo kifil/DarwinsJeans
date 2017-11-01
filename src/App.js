@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/lib/Button';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
 import FormControl from 'react-bootstrap/lib/FormControl';
 import ControlLabel from 'react-bootstrap/lib/ControlLabel';
+import SimulationStatsComponent from './simulationStatsComponent'
 
 
 
@@ -41,7 +42,7 @@ class App extends Component {
 
     render() {
         var startStopButton = this.state.isRunning
-            ? <Button className="center-block" bsStyle="primary" onClick={this.startSim.bind(this, false)}>Stop.</Button>
+            ? <Button className="center-block" bsStyle="primary" onClick={this.startSim.bind(this, false)}>Stop</Button>
             : <Button className="center-block" bsStyle="primary" onClick={this.startSim.bind(this, true)}>Start!</Button>
         ;
 
@@ -102,6 +103,11 @@ class App extends Component {
                     <div className="row">
                         <div className="col-lg-12">
                             {startStopButton}
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-lg-12">
+                            <SimulationStatsComponent></SimulationStatsComponent>
                         </div>
                     </div>
                 </div>
