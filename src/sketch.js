@@ -20,6 +20,9 @@ export default function sketch (p) {
     let currentRunNumber = 0;
     let canvas = {};
     let backgroundPattern = {};
+    p.krakenImg = p.loadImage("assets/images/kraken.png");
+    p.shipImg = p.loadImage("assets/images/ship.png");
+    p.fishImg = p.loadImage("assets/images/fish.png");
 
     p.setup = function (props) {
         var renderer2D = p.createCanvas(800, 800);
@@ -33,7 +36,7 @@ export default function sketch (p) {
     let getTiledBackground = function() {
         var context = canvas.getContext("2d");
         var img = new Image();
-        img.src = 'assets/water tile.png';
+        img.src = 'assets/images/water tile.png';
 
         img.onload = function(){
             // Create a pattern with this image, and set it to "repeat".
@@ -51,14 +54,14 @@ export default function sketch (p) {
     p.myCustomRedrawAccordingToNewPropsHandler = function (props) {
         console.log(props);
 
-        if(props.foodCount){
-            foodCount = props.foodCount;
-        }
         if(props.predatorCount){
             predatorCount = props.predatorCount;
         }
         if(props.preyCount){
             preyCount = props.preyCount;
+        }
+        if(props.foodCount){
+            foodCount = props.foodCount;
         }
         if (props.rotation){
             rotation = props.rotation * Math.PI / 180;
