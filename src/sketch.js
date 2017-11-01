@@ -18,12 +18,34 @@ export default function sketch (p) {
     let isRunning = false;
     let currentSimulationRun = {};
     let currentRunNumber = 0;
+    let canvas = {};
+    let backgroundPattern = {};
 
     p.setup = function (props) {
-        p.createCanvas(800, 800);
+        var renderer2D = p.createCanvas(800, 800);
+        canvas = renderer2D.canvas;
 
         world = new World(p,currentSimulationRun, foodCount, predatorCount, preyCount);
         //world.simulationRun = currentSimulationRun;
+        getTiledBackground();
+    };
+
+    let getTiledBackground = function() {
+        var context = canvas.getContext("2d");
+        var img = new Image();
+        img.src = 'assets/water tile.png';
+
+        img.onload = function(){
+            // Create a pattern with this image, and set it to "repeat".
+            backgroundPattern = context.createPattern(img, 'repeat');
+            drawBackground();
+        };
+    };
+
+    let drawBackground = function(){
+        var context = canvas.getContext("2d");
+        context.fillStyle = backgroundPattern;
+        context.fillRect(0, 0, canvas.width, canvas.height);
     };
 
     p.myCustomRedrawAccordingToNewPropsHandler = function (props) {
@@ -68,7 +90,7 @@ export default function sketch (p) {
     };
 
     p.draw = function() {
-        p.background(175);
+        drawBackground();
 
         if(isRunning){
             world.run();
