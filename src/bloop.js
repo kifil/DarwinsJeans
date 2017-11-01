@@ -49,16 +49,19 @@ export default function Bloop(p, l, dna_, simulationRunStats) {
     // At any moment there is a teeny, tiny chance a bloop will reproduce
     this.reproduce = function() {
         // asexual reproduction
-        if (p.random(1) < 0.0005) {
+        //if (p.random(1) < 0.0005) {
+
+        // Ships reproduce if health is over 300, just cuz
+        if(this.health >= 300){
+            this.health -= 200;
             // Child is exact copy of single parent
             var childDNA = this.dna.copy();
             // Child DNA can mutate
             childDNA.mutate(0.01);
             return new Bloop(p, this.position, childDNA, this.simulationRunStats);
         }
-        else {
-            return null;
-        }
+
+        return null;
     };
 
     // Method to update position

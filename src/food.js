@@ -10,7 +10,7 @@ export default function Food(p, num) {
     // Add some food at a location
     this.add = function(l) {
         this.food.push(l.copy());
-    }
+    };
 
     // Display the food
     this.run = function() {
@@ -25,10 +25,10 @@ export default function Food(p, num) {
         }
 
         // There's a small chance food will appear randomly
-        if (p.random(1) < 0.001) {
+        if (p.random(1) < 0.003) {
             this.food.push(p.createVector(p.random(p.width),p.random(p.height)));
         }
-    }
+    };
 
     // Return the list of food
     this.getFood = function() {
