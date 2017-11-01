@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Button from 'react-bootstrap/lib/Button';
-import FormGroup from 'react-bootstrap/lib/FormGroup';
-import FormControl from 'react-bootstrap/lib/FormControl';
-import ControlLabel from 'react-bootstrap/lib/ControlLabel';
+import SimulationStatsRowComponent from './statsRowComponent'
+import ListGroup from 'react-bootstrap/lib/ListGroup';
 
 window.axios = axios;
 window.axios.defaults.baseURL = 'http://localhost:8080/';
@@ -15,8 +14,7 @@ export default class SimulationStatsComponent extends Component {
 
         //this is how you set state in the constructor
         this.state = {
-            simulationRunStatsList: [],
-            number: 500
+            simulationRunStatsList: []
         };
 
         this.getStats = this.getStats.bind(this);
@@ -28,8 +26,8 @@ export default class SimulationStatsComponent extends Component {
 
         axios.get('/simruns')
             .then(function (response) {
-                console.log(response);
                 newStats = response.data;
+                console.log(newStats);
                 self.setState({simulationRunStatsList: newStats});
             })
             .catch(function (error) {
@@ -40,13 +38,13 @@ export default class SimulationStatsComponent extends Component {
     render() {
         return(
             <div>
-                <div>HI</div>
                 <Button className="center-block" bsStyle="primary" onClick={this.getStats.bind(this)}>Get new stats</Button>
-                <div className="col-lg-12">{this.props.number}</div>
                 <div className="col-lg-12">
-                    {this.props.number}
-                    hi again
-                    {this.props.simulationRunStatsList}
+                    <ListGroup>
+                        {this.state.simulationRunStatsList.map(function(statsRow){
+                            return <SimulationStatsRowComponent simulationStatsRow = {statsRow}></SimulationStatsRowComponent>;
+                        })}
+                    </ListGroup>
                 </div>
             </div>
         );

@@ -57,7 +57,7 @@ class App extends Component {
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-12">
-                            <center>
+                            <div className="col-lg-9">
                                 <P5Wrapper
                                     sketch={sketch}
                                     foodCount = {this.state.foodCount}
@@ -65,49 +65,47 @@ class App extends Component {
                                     preyCount = {this.state.preyCount}
                                     isRunning = {this.state.isRunning}
                                 />
-                            </center>
-                        </div>
-                    </div>
-                    <div className="row col-lg-offset-4">
-                        <div className="col-lg-2">
-                            <FormGroup>
-                                <ControlLabel>Krakens</ControlLabel>
-                                <FormControl
-                                    ref="numKrakens"
-                                    placeholder="#Krakens"
-                                    defaultValue={this.state.predatorCount}
-                                    onChange={this.changeCountByKey.bind(this, "predatorCount")} />
-                            </FormGroup>
-                        </div>
-                        <div className="col-lg-2">
-                            <FormGroup>
-                                <ControlLabel>Ships</ControlLabel>
-                                <FormControl
-                                    ref="numShips"
-                                    placeholder="#Ships"
-                                    defaultValue={this.state.preyCount}
-                                    onChange={this.changeCountByKey.bind(this, "preyCount")} />
-                            </FormGroup>
-                        </div>
-                        <div className="col-lg-2">
-                            <FormGroup>
-                                <ControlLabel>Fish</ControlLabel>
-                                <FormControl
-                                    ref="numFish"
-                                    placeholder="#Fish"
-                                    defaultValue={this.state.foodCount}
-                                    onChange={this.changeCountByKey.bind(this, "foodCount")} />
-                            </FormGroup>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-lg-12">
-                            {startStopButton}
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-lg-12">
-                            <SimulationStatsComponent></SimulationStatsComponent>
+                                <div className="row">
+                                    <div className="col-lg-2 col-lg-offset-3">
+                                        <FormGroup>
+                                            <ControlLabel>Krakens</ControlLabel>
+                                            <FormControl
+                                                ref="numKrakens"
+                                                placeholder="#Krakens"
+                                                defaultValue={this.state.predatorCount}
+                                                onChange={this.changeCountByKey.bind(this, "predatorCount")} />
+                                        </FormGroup>
+                                    </div>
+                                    <div className="col-lg-2">
+                                        <FormGroup>
+                                            <ControlLabel>Ships</ControlLabel>
+                                            <FormControl
+                                                ref="numShips"
+                                                placeholder="#Ships"
+                                                defaultValue={this.state.preyCount}
+                                                onChange={this.changeCountByKey.bind(this, "preyCount")} />
+                                        </FormGroup>
+                                    </div>
+                                    <div className="col-lg-2">
+                                        <FormGroup>
+                                            <ControlLabel>Fish</ControlLabel>
+                                            <FormControl
+                                                ref="numFish"
+                                                placeholder="#Fish"
+                                                defaultValue={this.state.foodCount}
+                                                onChange={this.changeCountByKey.bind(this, "foodCount")} />
+                                        </FormGroup>
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-lg-12">
+                                        {startStopButton}
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-lg-3">
+                                <SimulationStatsComponent></SimulationStatsComponent>
+                            </div>
                         </div>
                     </div>
                 </div>
