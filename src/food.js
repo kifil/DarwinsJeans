@@ -16,10 +16,12 @@ export default function Food(p, num) {
     this.run = function() {
         for (var i = 0; i < this.food.length; i++) {
             var f = this.food[i];
-            p.rectMode(p.CENTER);
-            p.stroke(0);
-            p.fill(127);
-            p.rect(f.x,f.y,8,8);
+            //p.rectMode(p.CENTER);
+            //p.stroke(0);
+            //p.fill(127);
+            //p.rect(f.x,f.y,8,8);
+            p.imageMode(p.CENTER);
+            p.image(p.fishImg, f.x, f.y, 16, 16);
         }
 
         // There's a small chance food will appear randomly

@@ -17,9 +17,9 @@ class App extends Component {
 
         //this is how you set state in the constructor
         this.state = {
+            predatorCount: 5,
+            preyCount: 20,
             foodCount: 100,
-            preyCount: 5,
-            predatorCount: 20,
             isRunning: false,
         };
 
@@ -49,7 +49,7 @@ class App extends Component {
             <div>
                 <div className="App">
                     <header className="App-header">
-                        <img src={logo} className="App-logo" alt="logo" />
+                        <img src="assets/images/kraken.png" className="App-logo" alt="logo" />
                         <h1 className="App-title">Kraken Lunch Time</h1>
                     </header>
                 </div>

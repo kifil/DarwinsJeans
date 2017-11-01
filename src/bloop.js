@@ -85,11 +85,15 @@ export default function Bloop(p, l, dna_, simulationRunStats) {
 
     // Method to display
     this.display = function() {
+        /*
         p.ellipseMode(p.CENTER);
         p.stroke(0,255);
         p.fill(255, this.health, 0, 255);
         p.ellipse(this.position.x, this.position.y, this.r, this.r);
-    }
+        */
+        p.imageMode(p.CENTER);
+        p.image(p.shipImg, this.position.x, this.position.y, this.r, this.r);
+    };
 
     // Death
     this.dead = function() {
@@ -100,4 +104,5 @@ export default function Bloop(p, l, dna_, simulationRunStats) {
         return false;
     }
 }
+
 
