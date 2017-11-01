@@ -26,7 +26,7 @@ export default function Bloop(p, l, dna_, simulationRunStats) {
         this.update();
         this.borders();
         this.display();
-    }
+    };
 
     // A bloop can find food and eat it
     this.eat = function(f) {
@@ -43,7 +43,7 @@ export default function Bloop(p, l, dna_, simulationRunStats) {
                 food.splice(i,1);
             }
         }
-    }
+    };
 
     // At any moment there is a teeny, tiny chance a bloop will reproduce
     this.reproduce = function() {
@@ -58,7 +58,7 @@ export default function Bloop(p, l, dna_, simulationRunStats) {
         else {
             return null;
         }
-    }
+    };
 
     // Method to update position
     this.update = function() {
@@ -73,7 +73,7 @@ export default function Bloop(p, l, dna_, simulationRunStats) {
         this.position.add(velocity);
         // Death always looming
         this.health -= 0.50;
-    }
+    };
 
     // Wraparound
     this.borders = function() {
@@ -81,7 +81,7 @@ export default function Bloop(p, l, dna_, simulationRunStats) {
         if (this.position.y < -this.r) this.position.y = p.height+this.r;
         if (this.position.x > this.width+this.r) this.position.x = -p.r;
         if (this.position.y > this.height+this.r) this.position.y = -p.r;
-    }
+    };
 
     // Method to display
     this.display = function() {
@@ -102,7 +102,5 @@ export default function Bloop(p, l, dna_, simulationRunStats) {
             return true;
         }
         return false;
-    }
+    };
 }
-
-
