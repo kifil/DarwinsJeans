@@ -21,7 +21,8 @@ export default function sketch (p) {
     let canvas = {};
     let backgroundPattern = {};
     p.krakenImg = p.loadImage("assets/images/kraken.png");
-    p.shipImg = p.loadImage("assets/images/ship.png");
+    p.shipRightImg = p.loadImage("assets/images/shipRight.png");
+    p.shipLeftImg = p.loadImage("assets/images/shipLeft.png");
     p.fishImg = p.loadImage("assets/images/fish.png");
 
     p.setup = function (props) {

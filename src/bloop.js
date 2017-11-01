@@ -16,6 +16,7 @@ export default function Bloop(p, l, dna_, simulationRunStats) {
     this.yoff = p.random(1000);
     this.dna = dna_;   // DNA
     this.simulationRunStats = simulationRunStats;
+    this.currentVelocity = {};
 
     // DNA will determine size and maxspeed
     // The bigger the bloop, the slower it is
@@ -66,13 +67,13 @@ export default function Bloop(p, l, dna_, simulationRunStats) {
 
         var vx = p.map(p.noise(this.xoff),0,1,-this.maxspeed,this.maxspeed);
         var vy = p.map(p.noise(this.yoff),0,1,-this.maxspeed,this.maxspeed);
-        var velocity = p.createVector(vx,vy);
+        this.currentVelocity = p.createVector(vx,vy);
         this.xoff += 0.01;
         this.yoff += 0.01;
 
-        this.position.add(velocity);
+        this.position.add(this.currentVelocity);
         // Death always looming
-        this.health -= 0.50;
+        this.health -= 0.2;
     };
 
     // Wraparound
@@ -88,11 +89,26 @@ export default function Bloop(p, l, dna_, simulationRunStats) {
         /*
         p.ellipseMode(p.CENTER);
         p.stroke(0,255);
-        p.fill(255, this.health, 0, 255);
+
         p.ellipse(this.position.x, this.position.y, this.r, this.r);
-        */
+*/
+        p.rectMode(p.CORNER);
+        var healthBarWidth = this.r * 2;
+        var healthPercent = this.health / 200;
+
+        // Clamp the health bar to not be longer than 100%
+        if(healthPercent > 1){
+            healthPercent = 1;
+        }
+
+        p.noFill();
+        p.rect(this.position.x - this.r,this.position.y - this.r, healthBarWidth, 8);
+        p.fill(255, this.health, 0, 255);
+        p.rect(this.position.x - this.r,this.position.y - this.r, healthBarWidth * healthPercent, 8);
+
+        var image = this.currentVelocity.x > 0 ? p.shipRightImg : p.shipLeftImg;
         p.imageMode(p.CENTER);
-        p.image(p.shipImg, this.position.x, this.position.y, this.r, this.r);
+        p.image(image, this.position.x, this.position.y, this.r, this.r);
     };
 
     // Death
