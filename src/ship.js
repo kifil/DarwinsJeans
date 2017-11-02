@@ -19,6 +19,7 @@ export default class Ship extends Creature{
             // Child DNA can mutate
             childDNA.mutate(this.simulationSettings.mutationRate);
             this.simulationRunStats.shipsBorn++;
+            this.p.sounds.reproduce.play();
             return new Ship(this.p, this.position, childDNA, this.type, this.simulationRunStats, this.simulationSettings);
         }
 

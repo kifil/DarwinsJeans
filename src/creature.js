@@ -47,6 +47,7 @@ export default class Creature {
                 this.simulationRunStats.foodEaten++;
                 this.health += 100;
                 food.splice(i,1);
+                this.p.sounds.getfish.play();
             }
         }
     };
@@ -112,6 +113,7 @@ export default class Creature {
     // Death
     dead() {
         if (this.health < 0.0) {
+            this.p.sounds.death.play();
             this.simulationRunStats.shipDeaths++;
             return true;
         }

@@ -2,6 +2,7 @@ import World from './world'
 import axios from 'axios';
 import SimulationRun from './simulationRun'
 import SimulationSettings from './simulationSettings'
+import Howler from 'howler';
 
 //https://github.com/NeroCor/react-p5-wrapper
 
@@ -23,6 +24,11 @@ export default function sketch (p) {
         shipRightImg: p.loadImage("assets/images/shipRight.png"),
         shipLeftImg: p.loadImage("assets/images/shipLeft.png"),
         fishImg: p.loadImage("assets/images/fish.png"),
+    };
+    p.sounds = {
+        death: new Howler.Howl({src:['assets/sounds/death.wav']}),
+        getfish: new Howler.Howl({src:['assets/sounds/getfish.wav']}),
+        reproduce: new Howler.Howl({src:['assets/sounds/reproduce.wav']}),
     };
 
     p.setup = function () {
@@ -95,23 +101,4 @@ export default function sketch (p) {
             world.run();
         }
     }
-
-// We can add a creature manually if we so desire
-//     p.mousePressed = function() {
-//         world.born(p.mouseX,p.mouseY);
-//     }
-//
-//     p.mouseDragged= function() {
-//         world.born(p.mouseX,p.mouseY);
-//     }
-
-    // p.draw = function () {
-    //     p.background(100);
-    //     p.noStroke();
-    //     p.push();
-    //     p.rotateY(rotation);
-    //     p.box(100);
-    //     p.ellipse(50, 50, 80, 80);
-    //     p.pop();
-    // };
 };
