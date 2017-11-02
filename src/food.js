@@ -19,7 +19,7 @@ export default function Food(p, num) {
             //p.fill(127);
             //p.rect(f.x,f.y,8,8);
             p.imageMode(p.CENTER);
-            p.image(p.fishImg, f.x, f.y, 16, 16);
+            p.image(p.images.fishImg, f.x, f.y, 16, 16);
         }
 
         // There's a small chance food will appear randomly

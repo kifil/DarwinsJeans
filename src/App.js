@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/lib/Button';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
 import FormControl from 'react-bootstrap/lib/FormControl';
 import ControlLabel from 'react-bootstrap/lib/ControlLabel';
-import SimulationStatsComponent from './simulationStatsComponent'
+import SimulationStatsComponent from './simulationStatsComponent';
 
 
 
