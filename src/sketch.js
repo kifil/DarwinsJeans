@@ -19,10 +19,12 @@ export default function sketch (p) {
     let currentRunNumber = 0;
     let canvas = {};
     let backgroundPattern = {};
-    p.krakenImg = p.loadImage("assets/images/kraken.png");
-    p.shipRightImg = p.loadImage("assets/images/shipRight.png");
-    p.shipLeftImg = p.loadImage("assets/images/shipLeft.png");
-    p.fishImg = p.loadImage("assets/images/fish.png");
+    p.images = {
+        krakenImg: p.loadImage("assets/images/kraken.png"),
+        shipRightImg: p.loadImage("assets/images/shipRight.png"),
+        shipLeftImg: p.loadImage("assets/images/shipLeft.png"),
+        fishImg: p.loadImage("assets/images/fish.png"),
+    };
 
     p.setup = function () {
         var renderer2D = p.createCanvas(800, 800);
