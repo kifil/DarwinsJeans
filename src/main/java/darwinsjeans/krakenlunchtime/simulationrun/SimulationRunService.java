@@ -25,7 +25,7 @@ public class SimulationRunService {
 //            .forEach(simRuns::add);
 
         if(maxRuns != null){
-            simRuns.subList(0,maxRuns > simRuns.size() ? simRuns.size() : maxRuns);
+            simRuns = simRuns.subList(0,maxRuns > simRuns.size() ? simRuns.size() : maxRuns);
         }
 
         return simRuns;
