@@ -10,17 +10,17 @@ export default class Creature {
     simulationRunStats = {};
     currentVelocity = {};
 
-    constructor(p, l, dna_, type, simulationRunStats){
+    constructor(p, l, dna_, type, simulationRunStats, simulationSettings){
         this.p = p;
         this.l = l;
         this.dna = dna_;
         this.type = type;
         this.simulationRunStats = simulationRunStats;
+        this.simulationSettings = simulationSettings;
 
         this.position = l.copy();  // Location
         this.xoff = p.random(1000);  // For perlin noise
         this.yoff = p.random(1000);
-        this.simulationRunStats = simulationRunStats;
         this.currentVelocity = {};
 
         // DNA will determine size and maxspeed
@@ -44,7 +44,6 @@ export default class Creature {
             var d = p5.Vector.dist(this.position, foodLocation);
             // If we are, juice up our strength!
             if (d < this.r/2) {
-                //this.foodEaten++;
                 this.simulationRunStats.foodEaten++;
                 this.health += 100;
                 food.splice(i,1);
@@ -74,7 +73,7 @@ export default class Creature {
         this.p.fill(255, this.health, 0, 255);
         this.p.rect(this.position.x - this.r,this.position.y - this.r, healthBarWidth * healthPercent, 8);
 
-        let image = this.currentVelocity.x > 0 ? this.p.shipRightImg : this.p.shipLeftImg;
+        let image = this.currentVelocity.x > 0 ? this.p.images.shipRightImg : this.p.images.shipLeftImg;
         this.p.imageMode(this.p.CENTER);
         this.p.image(image, this.position.x, this.position.y, this.r, this.r);
     };

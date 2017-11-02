@@ -1,7 +1,7 @@
-export default function Food(p, num) {
+export default function Food(p, simulationSettings) {
     // Start with some food
     this.food = [];
-    for (var i = 0; i < num; i++) {
+    for (var i = 0; i < simulationSettings.foodCount; i++) {
         this.food.push(p.createVector(p.random(p.width),p.random(p.height)));
     }
 
@@ -12,6 +12,7 @@ export default function Food(p, num) {
 
     // Display the food
     this.run = function() {
+        //console.log(simulationSettings);
         for (var i = 0; i < this.food.length; i++) {
             var f = this.food[i];
             //p.rectMode(p.CENTER);
@@ -19,11 +20,11 @@ export default function Food(p, num) {
             //p.fill(127);
             //p.rect(f.x,f.y,8,8);
             p.imageMode(p.CENTER);
-            p.image(p.fishImg, f.x, f.y, 16, 16);
+            p.image(p.images.fishImg, f.x, f.y, 16, 16);
         }
 
         // There's a small chance food will appear randomly
-        if (p.random(1) < 0.05) {
+        if (p.random(1) < simulationSettings.foodRate) {
             this.food.push(p.createVector(p.random(p.width),p.random(p.height)));
         }
     };

@@ -1,6 +1,7 @@
 import World from './world'
 import axios from 'axios';
 import SimulationRun from './simulationRun'
+import SimulationSettings from './simulationSettings'
 
 //https://github.com/NeroCor/react-p5-wrapper
 
@@ -10,25 +11,26 @@ window.axios = axios;
 window.axios.defaults.baseURL = 'http://localhost:8080/';
 
 export default function sketch (p) {
-    var foodCount = 0;
-    let predatorCount = 0;
-    let preyCount = 0;
+    let simulationSettings = {};
+
     let world;
     let isRunning = false;
     let currentSimulationRun = {};
     let currentRunNumber = 0;
     let canvas = {};
     let backgroundPattern = {};
-    p.krakenImg = p.loadImage("assets/images/kraken.png");
-    p.shipRightImg = p.loadImage("assets/images/shipRight.png");
-    p.shipLeftImg = p.loadImage("assets/images/shipLeft.png");
-    p.fishImg = p.loadImage("assets/images/fish.png");
+    p.images = {
+        krakenImg: p.loadImage("assets/images/kraken.png"),
+        shipRightImg: p.loadImage("assets/images/shipRight.png"),
+        shipLeftImg: p.loadImage("assets/images/shipLeft.png"),
+        fishImg: p.loadImage("assets/images/fish.png"),
+    };
 
-    p.setup = function (props) {
+    p.setup = function () {
         var renderer2D = p.createCanvas(800, 800);
         canvas = renderer2D.canvas;
 
-        world = new World(p,currentSimulationRun, foodCount, predatorCount, preyCount);
+        world = new World(p,currentSimulationRun, simulationSettings);
         //world.simulationRun = currentSimulationRun;
         getTiledBackground();
     };
@@ -52,17 +54,15 @@ export default function sketch (p) {
     };
 
     p.myCustomRedrawAccordingToNewPropsHandler = function (props) {
-        console.log(props);
-
-        if(props.predatorCount){
-            predatorCount = props.predatorCount;
-        }
-        if(props.preyCount){
-            preyCount = props.preyCount;
-        }
-        if(props.foodCount){
-            foodCount = props.foodCount;
-        }
+        simulationSettings = new SimulationSettings(
+            props.predatorCount,
+            props.preyCount,
+            props.foodCount,
+            props.healthLimit,
+            props.foodRate,
+            props.mutationRate)
+        // console.log("props", props);
+        // console.log("settings", simulationSettings);
 
         // Recreate world if sim is currently stopped but set to run
         //START
