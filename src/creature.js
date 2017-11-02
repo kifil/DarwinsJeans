@@ -1,6 +1,7 @@
 import p5 from 'p5';
 
 export default class Creature {
+    type = '';
     health = -1;
     position = {};
     xoff = 0;
@@ -27,14 +28,14 @@ export default class Creature {
         this.r = p.map(this.dna.genes[0], 0, 1, 0, 50);
     }
 
-    run = function() {
+    run() {
         this.update();
         this.borders();
         this.display();
     };
 
     // A creature can find food and eat it
-    eat = function(f) {
+    eat(f) {
         var food = f.getFood();
         // Are we touching any food objects?
         for (var i = food.length-1; i >= 0; i--) {
@@ -51,7 +52,7 @@ export default class Creature {
     };
 
     // At any moment there is a teeny, tiny chance a creature will reproduce
-    reproduce = function() {
+    reproduce() {
         // asexual reproduction
         //if (p.random(1) < 0.0005) {
 
@@ -69,7 +70,7 @@ export default class Creature {
     };
 
     // Method to display
-    display = function() {
+    display() {
         /*
         p.ellipseMode(p.CENTER);
         p.stroke(0,255);
@@ -96,7 +97,7 @@ export default class Creature {
     };
 
     // Method to update position
-    update = function() {
+    update() {
         // Simple movement based on perlin noise
 
         var vx = this.p.map(this.p.noise(this.xoff),0,1,-this.maxspeed,this.maxspeed);
@@ -111,7 +112,7 @@ export default class Creature {
     };
 
     // Wraparound
-    borders = function() {
+    borders() {
         if (this.position.x < -this.r){
             this.position.x = this.p.width;
         }
@@ -127,7 +128,7 @@ export default class Creature {
     };
 
     // Death
-    dead = function() {
+    dead() {
         if (this.health < 0.0) {
             this.simulationRunStats.shipDeaths++;
             return true;

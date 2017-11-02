@@ -7,7 +7,6 @@
 // Creature class
 
 // Create a "bloop" creature
-import p5 from 'p5';
 import Creature from './creature';
 
 export default class Bloop extends Creature{

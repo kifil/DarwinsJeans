@@ -3,11 +3,6 @@ import ListGroupItem from 'react-bootstrap/lib/ListGroupItem';
 
 
 export default class SimulationStatsRowComponent extends Component {
-    constructor(props) {
-        super(props);
-
-    };
-
     render() {
         return (
             <ListGroupItem>

@@ -1,5 +1,3 @@
-import p5 from 'p5'
-
 export default function Food(p, num) {
     // Start with some food
     this.food = [];

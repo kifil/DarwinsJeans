@@ -10,7 +10,6 @@ window.axios = axios;
 window.axios.defaults.baseURL = 'http://localhost:8080/';
 
 export default function sketch (p) {
-    let rotation = 0;
     var foodCount = 0;
     let predatorCount = 0;
     let preyCount = 0;
@@ -63,9 +62,6 @@ export default function sketch (p) {
         }
         if(props.foodCount){
             foodCount = props.foodCount;
-        }
-        if (props.rotation){
-            rotation = props.rotation * Math.PI / 180;
         }
 
         // Recreate world if sim is currently stopped but set to run

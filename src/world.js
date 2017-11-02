@@ -37,7 +37,7 @@ export default class World  {
     // }
 
     // Run the world
-    run = function() {
+    run() {
         // Deal with food
         this.food.run();
 
@@ -60,7 +60,7 @@ export default class World  {
         this.simulationRunStats.worldTicks++;
     };
 
-    stopRun = function () {
+    stopRun() {
         // var that = this;
         // this.simulationRun.foodEaten = 0;
         // this.bloops.map(function(obj){

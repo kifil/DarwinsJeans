@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './taco.svg';
 import './App.css';
 import P5Wrapper from 'react-p5-wrapper';
 import sketch from './sketch'
