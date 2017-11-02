@@ -25,7 +25,7 @@ export default function Food(p, num) {
         }
 
         // There's a small chance food will appear randomly
-        if (p.random(1) < 0.003) {
+        if (p.random(1) < 0.01) {
             this.food.push(p.createVector(p.random(p.width),p.random(p.height)));
         }
     };
