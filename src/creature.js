@@ -10,17 +10,17 @@ export default class Creature {
     simulationRunStats = {};
     currentVelocity = {};
 
-    constructor(p, l, dna_, type, simulationRunStats){
+    constructor(p, l, dna_, type, simulationRunStats, simulationSettings){
         this.p = p;
         this.l = l;
         this.dna = dna_;
         this.type = type;
         this.simulationRunStats = simulationRunStats;
+        this.simulationSettings = simulationSettings;
 
         this.position = l.copy();  // Location
         this.xoff = p.random(1000);  // For perlin noise
         this.yoff = p.random(1000);
-        this.simulationRunStats = simulationRunStats;
         this.currentVelocity = {};
 
         // DNA will determine size and maxspeed

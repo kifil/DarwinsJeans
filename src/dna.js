@@ -29,9 +29,9 @@ export default function DNA(p, newgenes) {
     }
 
     // Based on a mutation probability, picks a new random character in array spots
-    this.mutate = function(m) {
+    this.mutate = function(mutationRate) {
         for (var i = 0; i < this.genes.length; i++) {
-            if (p.random(1) < m) {
+            if (p.random(1) < mutationRate) {
                 this.genes[i] = p.random(0,1);
             }
         }

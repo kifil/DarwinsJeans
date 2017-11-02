@@ -5,27 +5,20 @@ import DNA from './dna'
 export default class World  {
     sketch = {};
     simulationRunStats = {};
-    initialFoodCount = 0;
-    initialPredatorCount = 0;
-    initialPreyCount = 0;
+    simulationSettings = {};
 
-
-    constructor(sketch,simulationRunStats, initialFoodCount, initialPredatorCount, initialPreyCount){
+    constructor(sketch,simulationRunStats, simulationSettings){
         this.sketch = sketch;
         this.simulationRunStats = simulationRunStats;
-        this.initialPredatorCount = initialPredatorCount;
-        this.initialFoodCount = initialFoodCount;
-        this.initialPreyCount = initialPreyCount;
-
-        console.log("simulation run", this.simulationRunStats);
+        this.simulationSettings = simulationSettings;
 
         // Start with initial food and creatures
-        this.food = new Food(sketch, initialFoodCount);
+        this.food = new Food(sketch, this.simulationSettings);
         this.bloops = [];        // An array for all creatures
-        for (var i = 0; i < initialPreyCount; i++) {
+        for (var i = 0; i < this.simulationSettings.preyCount; i++) {
             var l = sketch.createVector(sketch.random(sketch.width), sketch.random(sketch.height));
             var dna = new DNA(sketch);
-            this.bloops.push(new Bloop(sketch, l, dna, 'bloop', this.simulationRunStats));
+            this.bloops.push(new Bloop(sketch, l, dna, 'bloop', this.simulationRunStats, this.simulationSettings));
         }
     }
 

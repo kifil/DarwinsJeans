@@ -10,10 +10,10 @@
 import Creature from './creature';
 
 export default class Bloop extends Creature{
-    health = 200;
-    constructor(p, l, dna_, type, simulationRunStats){
-        super(p, l, dna_, type, simulationRunStats);
-    }
+    health = this.simulationSettings.healthLimit;
+    //constructor(p, l, dna_, type, simulationRunStats){
+       // super(p, l, dna_, type, simulationRunStats);
+   //}
 
     // At any moment there is a teeny, tiny chance a creature will reproduce
     reproduce() {
@@ -26,8 +26,8 @@ export default class Bloop extends Creature{
             // Child is exact copy of single parent
             var childDNA = this.dna.copy();
             // Child DNA can mutate
-            childDNA.mutate(0.01);
-            return new Bloop(this.p, this.position, childDNA, this.type, this.simulationRunStats);
+            childDNA.mutate(this.simulationSettings.mutationRate);
+            return new Bloop(this.p, this.position, childDNA, this.type, this.simulationRunStats, this.simulationSettings);
         }
 
         return null;

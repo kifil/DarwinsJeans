@@ -8,8 +8,6 @@ import FormControl from 'react-bootstrap/lib/FormControl';
 import ControlLabel from 'react-bootstrap/lib/ControlLabel';
 import SimulationStatsComponent from './simulationStatsComponent'
 
-
-
 class App extends Component {
     constructor(props) {
         //this super sets the props using react's base component constructor
@@ -20,7 +18,10 @@ class App extends Component {
             predatorCount: 5,
             preyCount: 20,
             foodCount: 100,
-            isRunning: false,
+            healthLimit: 200,
+            foodRate: 0.1,
+            mutationRate: .01,
+            isRunning: false
         };
 
         //need to bind the ensure we get the component as "this" no matter where it is called
@@ -61,10 +62,13 @@ class App extends Component {
                                     foodCount = {this.state.foodCount}
                                     predatorCount = {this.state.predatorCount}
                                     preyCount = {this.state.preyCount}
+                                    healthLimit = {this.state.healthLimit}
+                                    foodRate = {this.state.foodRate}
+                                    mutationRate = {this.state.mutationRate}
                                     isRunning = {this.state.isRunning}
                                 />
                                 <div className="row">
-                                    <div className="col-lg-2 col-lg-offset-3">
+                                    <div className="col-lg-2">
                                         <FormGroup>
                                             <ControlLabel>Krakens</ControlLabel>
                                             <FormControl
@@ -92,6 +96,36 @@ class App extends Component {
                                                 placeholder="#Fish"
                                                 defaultValue={this.state.foodCount}
                                                 onChange={this.changeCountByKey.bind(this, "foodCount")} />
+                                        </FormGroup>
+                                    </div>
+                                    <div className="col-lg-2">
+                                        <FormGroup>
+                                            <ControlLabel>Starting Health</ControlLabel>
+                                            <FormControl
+                                                ref="healthLimit"
+                                                placeholder="health limit"
+                                                defaultValue={this.state.healthLimit}
+                                                onChange={this.changeCountByKey.bind(this, "healthLimit")} />
+                                        </FormGroup>
+                                    </div>
+                                    <div className="col-lg-2">
+                                        <FormGroup>
+                                            <ControlLabel>Food Rate %</ControlLabel>
+                                            <FormControl
+                                                ref="foodRate"
+                                                placeholder="food rate"
+                                                defaultValue={this.state.foodRate}
+                                                onChange={this.changeCountByKey.bind(this, "foodRate")} />
+                                        </FormGroup>
+                                    </div>
+                                    <div className="col-lg-2">
+                                        <FormGroup>
+                                            <ControlLabel>Mutation Rate %</ControlLabel>
+                                            <FormControl
+                                                ref="mutationRate"
+                                                placeholder="mutation rate"
+                                                defaultValue={this.state.mutationRate}
+                                                onChange={this.changeCountByKey.bind(this, "mutationRate")} />
                                         </FormGroup>
                                     </div>
                                 </div>
