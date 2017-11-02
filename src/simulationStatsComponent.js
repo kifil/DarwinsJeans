@@ -23,8 +23,8 @@ export default class SimulationStatsComponent extends Component {
     getStats(){
         var newStats;
         var self = this;
-        var maxRunsToDisplay = 6;
-
+        // var maxRunsToDisplay = 6;
+        //
         // axios.get('/simruns/' + maxRunsToDisplay)
         //     .then(function (response) {
         //         newStats = response.data;
@@ -52,8 +52,8 @@ export default class SimulationStatsComponent extends Component {
                 <Button className="center-block" bsStyle="primary" onClick={this.getStats.bind(this)}>Get new stats</Button>
                 <div className="col-lg-12">
                     <ListGroup>
-                        {this.state.simulationRunStatsList.map(function(statsRow){
-                            return <SimulationStatsRowComponent simulationStatsRow = {statsRow}></SimulationStatsRowComponent>;
+                        {this.state.simulationRunStatsList.map(function(statsRow, index){
+                            return <SimulationStatsRowComponent key = {index} simulationStatsRow = {statsRow}></SimulationStatsRowComponent>;
                         })}
                     </ListGroup>
                 </div>

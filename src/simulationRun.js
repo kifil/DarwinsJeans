@@ -11,7 +11,4 @@ export default class SimulationRun {
     shipsBorn = 0;
     krakenBorn = 0;
 
-    constructor(simulationRunNumber){
-        this.id = simulationRunNumber;
-    }
 }

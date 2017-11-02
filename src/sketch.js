@@ -16,7 +16,6 @@ export default function sketch (p) {
     let world;
     let isRunning = false;
     let currentSimulationRun = {};
-    let currentRunNumber = 0;
     let canvas = {};
     let backgroundPattern = {};
     p.images = {
@@ -67,8 +66,7 @@ export default function sketch (p) {
         // Recreate world if sim is currently stopped but set to run
         //START
         if(!isRunning && props.isRunning){
-            currentRunNumber++;
-            currentSimulationRun = new SimulationRun(currentRunNumber);
+            currentSimulationRun = new SimulationRun();
             p.setup(props);
         }
 
@@ -77,6 +75,7 @@ export default function sketch (p) {
             world.stopRun();
 
             //save data
+            console.log(currentSimulationRun);
             axios.post('/simruns', currentSimulationRun)
                 .then(function (response) {
                     console.log(response);
