@@ -12,11 +12,19 @@ public class SimulationRunController {
     @Autowired
     private SimulationRunService simulationRunService;
 
-    @RequestMapping("/simruns")
-    public List<SimulationRun> getAllSimRuns(){
+    @RequestMapping("/simruns/{maxRuns}")
+    public List<SimulationRun> getTopSimRuns(@PathVariable Integer maxRuns){
         //automatically converts to JSON since its a rest controller
-        return simulationRunService.getAllSimRuns();
+        return simulationRunService.getAllSimRuns(maxRuns);
     }
+
+//    @RequestMapping(method = RequestMethod.GET, value = "/simruns")
+//    public List<SimulationRun> getAllSimRuns(){
+//        //automatically converts to JSON since its a rest controller
+//        return simulationRunService.getAllSimRuns(null);
+//    }
+//
+
 
     @RequestMapping(method = RequestMethod.POST, value = "/simruns")
     //request will have json of a simulationRun
