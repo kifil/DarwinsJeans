@@ -1,7 +1,7 @@
 import p5 from 'p5';
 
 export default class Creature {
-    type = '';
+    type = 'creature';
     health = -1;
     position = {};
     xoff = 0;
@@ -10,10 +10,11 @@ export default class Creature {
     simulationRunStats = {};
     currentVelocity = {};
 
-    constructor(p, l, dna_, simulationRunStats){
+    constructor(p, l, dna_, type, simulationRunStats){
         this.p = p;
         this.l = l;
         this.dna = dna_;
+        this.type = type;
         this.simulationRunStats = simulationRunStats;
 
         this.position = l.copy();  // Location
@@ -49,24 +50,6 @@ export default class Creature {
                 food.splice(i,1);
             }
         }
-    };
-
-    // At any moment there is a teeny, tiny chance a creature will reproduce
-    reproduce() {
-        // asexual reproduction
-        //if (p.random(1) < 0.0005) {
-
-        // Creature reproduce if health is over 300, just cuz
-        if(this.health >= 300){
-            this.health -= 200;
-            // Child is exact copy of single parent
-            var childDNA = this.dna.copy();
-            // Child DNA can mutate
-            childDNA.mutate(0.01);
-            return new Creature(this.p, this.position, childDNA, this.simulationRunStats);
-        }
-
-        return null;
     };
 
     // Method to display

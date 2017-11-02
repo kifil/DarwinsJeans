@@ -25,7 +25,7 @@ export default class World  {
         for (var i = 0; i < initialPreyCount; i++) {
             var l = sketch.createVector(sketch.random(sketch.width), sketch.random(sketch.height));
             var dna = new DNA(sketch);
-            this.bloops.push(new Bloop(sketch, l, dna, this.simulationRunStats));
+            this.bloops.push(new Bloop(sketch, l, dna, 'bloop', this.simulationRunStats));
         }
     }
 
