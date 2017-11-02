@@ -11,6 +11,7 @@ export default class SimulationStatsRowComponent extends Component {
                 <div>Food Eaten: {this.props.simulationStatsRow.foodEaten}</div>
                 <div>Ship Deaths: {this.props.simulationStatsRow.shipDeaths}</div>
                 <div>Ship Berths: {this.props.simulationStatsRow.shipsBorn}</div>
+                <div>Final Ship Population: {this.props.simulationStatsRow.finalPopulationShips}</div>
             </ListGroupItem>
         );
     };
