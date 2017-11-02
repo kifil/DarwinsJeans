@@ -18,6 +18,11 @@ public class SimulationRunController {
         return simulationRunService.getAllSimRuns(maxRuns);
     }
 
+    @RequestMapping("/simruns/last-six-runs")
+    public List<SimulationRun> getLastSixSimRuns(){
+        //automatically converts to JSON since its a rest controller
+        return simulationRunService.getLastSixSimRuns();
+    }
 //    @RequestMapping(method = RequestMethod.GET, value = "/simruns")
 //    public List<SimulationRun> getAllSimRuns(){
 //        //automatically converts to JSON since its a rest controller

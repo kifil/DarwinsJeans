@@ -1,13 +1,12 @@
 package darwinsjeans.krakenlunchtime.simulationrun;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 //lets JPA know that this object should map to a table
 @Entity
 public class SimulationRun {
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
@@ -40,7 +39,10 @@ public class SimulationRun {
     }
 
     @Id
-    private Integer id;
+    @Column(name = "ID")
+    @SequenceGenerator(name="seq")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     public void setFoodEaten(Integer foodEaten) {
         this.foodEaten = foodEaten;
@@ -90,7 +92,7 @@ public class SimulationRun {
     public SimulationRun() {
     }
 
-    public SimulationRun(Integer id, Integer foodEaten, Integer krakenDeaths, Integer shipDeaths, Integer maxPopulationKraken, Integer maxPopulationShips, Integer finalPopulationKraken, Integer finalPopulationShips, Integer worldTicks) {
+    public SimulationRun(Long id, Integer foodEaten, Integer krakenDeaths, Integer shipDeaths, Integer maxPopulationKraken, Integer maxPopulationShips, Integer finalPopulationKraken, Integer finalPopulationShips, Integer worldTicks) {
         this.id = id;
         this.foodEaten = foodEaten;
         this.krakenDeaths = krakenDeaths;

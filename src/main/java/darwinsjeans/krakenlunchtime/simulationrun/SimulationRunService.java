@@ -31,6 +31,16 @@ public class SimulationRunService {
         return simRuns;
     }
 
+    public List<SimulationRun> getLastSixSimRuns(){
+        //Integer maxRuns = null;
+
+        List<SimulationRun> simRuns = new ArrayList<>();
+        simulationRunRepository.findFirst6ByOrderByIdDesc()
+                .forEach(simRuns::add);
+
+        return simRuns;
+    }
+
     public SimulationRun getSimRun(String id){
         return simulationRunRepository.findOne(id);
     }

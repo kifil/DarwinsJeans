@@ -25,11 +25,21 @@ export default class SimulationStatsComponent extends Component {
         var self = this;
         var maxRunsToDisplay = 6;
 
-        axios.get('/simruns/' + maxRunsToDisplay)
+        // axios.get('/simruns/' + maxRunsToDisplay)
+        //     .then(function (response) {
+        //         newStats = response.data;
+        //         // console.log(newStats);
+        //         self.setState({simulationRunStatsList: newStats});
+        //     })
+        //     .catch(function (error) {
+        //         console.log(error);
+        //     });
+
+        axios.get('/simruns/last-six-runs/')
             .then(function (response) {
                 newStats = response.data;
                 console.log(newStats);
-                self.setState({simulationRunStatsList: newStats});
+                self.setState({simulationRunStatsList: newStats})
             })
             .catch(function (error) {
                 console.log(error);

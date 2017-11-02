@@ -7,4 +7,6 @@ import java.util.List;
 public interface SimulationRunRepository extends CrudRepository<SimulationRun,String> {
 
     public List<SimulationRun> findAllByOrderByIdDesc();
+
+    public List<SimulationRun> findFirst6ByOrderByIdDesc();
 }
