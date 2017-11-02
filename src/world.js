@@ -57,6 +57,7 @@ export default class World  {
         // this.bloops.map(function(obj){
         //     that.simulationRun.foodEaten += obj.foodEaten;
         // });
+        this.simulationRunStats.finalPopulationShips = this.creatures.ships.length;
         console.log('this.simulationRunStats', this.simulationRunStats);
     };
 

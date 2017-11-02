@@ -38,6 +38,14 @@ public class SimulationRun {
         return finalPopulationShips;
     }
 
+    public Integer getShipsBorn() {
+        return shipsBorn;
+    }
+
+    public Integer getWorldTicks() {
+        return worldTicks;
+    }
+
     @Id
     @Column(name = "ID")
     @SequenceGenerator(name="seq")
@@ -72,12 +80,12 @@ public class SimulationRun {
         this.finalPopulationShips = finalPopulationShips;
     }
 
-    public Integer getWorldTicks() {
-        return worldTicks;
-    }
-
     public void setWorldTicks(Integer worldTicks) {
         this.worldTicks = worldTicks;
+    }
+
+    public void setShipsBorn(Integer shipsBorn) {
+        this.shipsBorn = shipsBorn;
     }
 
     private Integer foodEaten;
@@ -87,12 +95,13 @@ public class SimulationRun {
     private Integer maxPopulationShips;
     private Integer finalPopulationKraken;
     private Integer finalPopulationShips;
+    private Integer shipsBorn;
     private Integer worldTicks;
 
     public SimulationRun() {
     }
 
-    public SimulationRun(Long id, Integer foodEaten, Integer krakenDeaths, Integer shipDeaths, Integer maxPopulationKraken, Integer maxPopulationShips, Integer finalPopulationKraken, Integer finalPopulationShips, Integer worldTicks) {
+    public SimulationRun(Long id, Integer foodEaten, Integer krakenDeaths, Integer shipDeaths, Integer maxPopulationKraken, Integer maxPopulationShips, Integer finalPopulationKraken, Integer finalPopulationShips, Integer worldTicks, Integer shipsBorn) {
         this.id = id;
         this.foodEaten = foodEaten;
         this.krakenDeaths = krakenDeaths;
@@ -102,5 +111,6 @@ public class SimulationRun {
         this.finalPopulationKraken = finalPopulationKraken;
         this.finalPopulationShips = finalPopulationShips;
         this.worldTicks = worldTicks;
+        this.shipsBorn = shipsBorn;
     }
 }
