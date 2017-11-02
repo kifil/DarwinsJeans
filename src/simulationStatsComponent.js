@@ -23,8 +23,9 @@ export default class SimulationStatsComponent extends Component {
     getStats(){
         var newStats;
         var self = this;
+        var maxRunsToDisplay = 6;
 
-        axios.get('/simruns')
+        axios.get('/simruns/' + maxRunsToDisplay)
             .then(function (response) {
                 newStats = response.data;
                 console.log(newStats);

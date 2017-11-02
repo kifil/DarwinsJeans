@@ -35,7 +35,6 @@ class App extends Component {
     };
 
     startSim(isRunning, event){
-        // TODO: keep track of run time?
         this.setState({isRunning: isRunning});
     };
 

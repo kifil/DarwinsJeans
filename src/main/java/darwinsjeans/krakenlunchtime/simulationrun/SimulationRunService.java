@@ -15,10 +15,19 @@ public class SimulationRunService {
     private SimulationRunRepository simulationRunRepository;
 
 
-    public List<SimulationRun> getAllSimRuns(){
+    public List<SimulationRun> getAllSimRuns(Integer maxRuns){
+        //Integer maxRuns = null;
+
         List<SimulationRun> simRuns = new ArrayList<>();
-        simulationRunRepository.findAll()
-            .forEach(simRuns::add);
+        simulationRunRepository.findAllByOrderByIdDesc()
+                .forEach(simRuns::add);
+//        simulationRunRepository.findAll()
+//            .forEach(simRuns::add);
+
+        if(maxRuns != null){
+            simRuns = simRuns.subList(0,maxRuns > simRuns.size() ? simRuns.size() : maxRuns);
+        }
+
         return simRuns;
     }
 

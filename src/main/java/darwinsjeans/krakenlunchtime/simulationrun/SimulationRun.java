@@ -7,7 +7,7 @@ import javax.persistence.Id;
 @Entity
 public class SimulationRun {
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -40,7 +40,7 @@ public class SimulationRun {
     }
 
     @Id
-    private String id;
+    private Integer id;
 
     public void setFoodEaten(Integer foodEaten) {
         this.foodEaten = foodEaten;
@@ -90,7 +90,7 @@ public class SimulationRun {
     public SimulationRun() {
     }
 
-    public SimulationRun(String id, Integer foodEaten, Integer krakenDeaths, Integer shipDeaths, Integer maxPopulationKraken, Integer maxPopulationShips, Integer finalPopulationKraken, Integer finalPopulationShips, Integer worldTicks) {
+    public SimulationRun(Integer id, Integer foodEaten, Integer krakenDeaths, Integer shipDeaths, Integer maxPopulationKraken, Integer maxPopulationShips, Integer finalPopulationKraken, Integer finalPopulationShips, Integer worldTicks) {
         this.id = id;
         this.foodEaten = foodEaten;
         this.krakenDeaths = krakenDeaths;
