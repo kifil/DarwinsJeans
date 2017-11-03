@@ -81,7 +81,6 @@ export default function sketch (p) {
             world.stopRun();
 
             //save data
-            console.log(currentSimulationRun);
             axios.post('/simruns', currentSimulationRun)
                 .then(function (response) {
                     console.log(response);
