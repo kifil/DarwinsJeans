@@ -12,8 +12,6 @@ window.axios = axios;
 window.axios.defaults.baseURL = 'http://localhost:8080/';
 window.world = {
     simulationRunStats:{
-        worldTicks: 0,
-        foodEaten: 0,
     }
 };
 window.isRunning = false;
