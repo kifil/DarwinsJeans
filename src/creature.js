@@ -100,15 +100,12 @@ export default class Creature {
     borders() {
         if (this.position.x < -this.r){
             this.position.x = this.p.width;
-        }
-        if (this.position.y < -this.r){
-            this.position.y = this.p.height;
-        }
-        if (this.position.x > this.width){
-            this.position.x = 0;
-        }
-        if (this.position.y > this.height){
-            this.position.y = 0;
+        }else if (this.position.y < -this.r){
+            this.position.y = this.p.height-this.r;
+        }else if (this.position.x > this.p.width+this.r){
+            this.position.x = -this.r;
+        }else if (this.position.y > this.p.height+this.r){
+            this.position.y = -this.r;
         }
     };
 

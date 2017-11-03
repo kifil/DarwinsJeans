@@ -20,7 +20,7 @@ class App extends Component {
         //this is how you set state in the constructor
         this.state = {
             predatorCount: 5,
-            preyCount: 4,
+            preyCount: 20,
             foodCount: 100,
             healthLimit: 200,
             foodRate: 0.1,
