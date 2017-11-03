@@ -3,7 +3,6 @@ import axios from 'axios';
 import Button from 'react-bootstrap/lib/Button';
 import Panel from 'react-bootstrap/lib/Panel';
 import SimulationStatsRowComponent from './statsRowComponent'
-import ListGroup from 'react-bootstrap/lib/ListGroup';
 
 window.axios = axios;
 window.axios.defaults.baseURL = 'http://localhost:8080/';

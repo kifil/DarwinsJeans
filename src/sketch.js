@@ -10,15 +10,23 @@ import Howler from 'howler';
 //also means you don't use {} when importing it
 window.axios = axios;
 window.axios.defaults.baseURL = 'http://localhost:8080/';
-
+window.world = {
+    simulationRunStats:{
+        worldTicks: 0,
+        foodEaten: 0,
+    }
+};
+window.isRunning = false;
 export default function sketch (p) {
     let simulationSettings = {};
-
-    let world;
+    let world = {};
     let isRunning = false;
     let currentSimulationRun = {};
     let canvas = {};
     let backgroundPattern = {};
+    // This is a placeholder world for stats and not actually used to run a sim
+    window.world = new World(p,currentSimulationRun, simulationSettings);
+
     p.images = {
         krakenImg: p.loadImage("assets/images/kraken.png"),
         shipRightImg: p.loadImage("assets/images/shipRight.png"),
@@ -34,9 +42,8 @@ export default function sketch (p) {
     p.setup = function () {
         var renderer2D = p.createCanvas(800, 800);
         canvas = renderer2D.canvas;
-
         world = new World(p,currentSimulationRun, simulationSettings);
-        //world.simulationRun = currentSimulationRun;
+        window.world = world;
         getTiledBackground();
     };
 
@@ -65,7 +72,7 @@ export default function sketch (p) {
             props.foodCount,
             props.healthLimit,
             props.foodRate,
-            props.mutationRate)
+            props.mutationRate);
 
         // Recreate world if sim is currently stopped but set to run
         //START
@@ -88,6 +95,7 @@ export default function sketch (p) {
         }
 
         isRunning = props.isRunning;
+        window.isRunning = isRunning;
     };
 
     p.draw = function() {

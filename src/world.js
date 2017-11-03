@@ -51,6 +51,7 @@ export default class World  {
 
         this.updateRunStats();
         this.display();
+        window.world = this;
     };
 
     updateRunStats(){
@@ -58,8 +59,9 @@ export default class World  {
         this.creatures.ships.map(function(ship){
             self.simulationRunStats.averageSizeSpeed += ship.dna.genes["Speed-Size"];
         });
-        this.simulationRunStats.averageSizeSpeed /= this.creatures.ships.length;
 
+        this.simulationRunStats.currentPopulationShips = this.creatures.ships.length;
+        this.simulationRunStats.averageSizeSpeed /= this.creatures.ships.length;
         this.simulationRunStats.worldTicks++;
     }
 
@@ -73,6 +75,4 @@ export default class World  {
     stopRun() {
         this.simulationRunStats.finalPopulationShips = this.creatures.ships.length;
     };
-
-
 }

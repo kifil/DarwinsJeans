@@ -138,7 +138,10 @@ class App extends Component {
                         </div>
                         <div className="col-lg-3">
                             <div className="row">
-                                <CurrentStatsComponent/>
+                                <CurrentStatsComponent
+                                    sketch = {sketch}
+                                    simulationRunStats = {window.world.simulationRunStats}
+                                />
                             </div>
                             <div className="row">
                                 <SimulationStatsComponent/>
