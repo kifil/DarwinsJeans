@@ -11,5 +11,6 @@ export default class SimulationRun {
     shipsBorn = 0;
     krakenBorn = 0;
     medianSizeSpeed = 0;
+    medianAgingFertility = 0;
 
 }

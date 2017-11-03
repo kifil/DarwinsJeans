@@ -55,14 +55,28 @@ export default class World  {
 
     updateRunStats(){
         var self = this;
-        var sizeSpeedArray = [];
+
+        this.calculateMedianSpeedSize();
+        this.calculateMedianAgingFertility();
+        this.simulationRunStats.worldTicks++;
+    }
+
+    calculateMedianSpeedSize(){
+        var geneValues = [];
         this.creatures.ships.map(function(ship){
-            sizeSpeedArray.push(ship.dna.genes["Speed-Size"]);
+            geneValues.push(ship.dna.genes["Speed-Size"]);
         });
 
-        this.simulationRunStats.medianSizeSpeed = this.median(sizeSpeedArray, this.simulationRunStats.medianSizeSpeed);
+        this.simulationRunStats.medianSizeSpeed = this.median(geneValues, this.simulationRunStats.medianSizeSpeed);
+    }
 
-        this.simulationRunStats.worldTicks++;
+    calculateMedianAgingFertility(){
+        var geneValues = [];
+        this.creatures.ships.map(function(ship){
+            geneValues.push(ship.dna.genes["Aging-Fertility"]);
+        });
+
+        this.simulationRunStats.medianAgingFertility = this.median(geneValues, this.simulationRunStats.medianAgingFertility);
     }
 
     median(numbers, lastValue) {
@@ -90,7 +104,8 @@ export default class World  {
         //display text on sketch
         this.sketch.textSize(16);
         this.sketch.fill(0,0,0);
-        this.sketch.text("Median Size-Speed: " + this.simulationRunStats.medianSizeSpeed.toFixed(3), 5,790);
+        this.sketch.text("Median Size-Speed: " + this.simulationRunStats.medianSizeSpeed.toFixed(3), 5,765);
+        this.sketch.text("Median Aging-Fertility: " + this.simulationRunStats.medianAgingFertility.toFixed(3), 5,790);
     }
 
     stopRun() {

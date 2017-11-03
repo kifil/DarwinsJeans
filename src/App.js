@@ -9,6 +9,8 @@ import ControlLabel from 'react-bootstrap/lib/ControlLabel';
 import Panel from 'react-bootstrap/lib/Panel';
 import SimulationStatsComponent from './simulationStatsComponent';
 import CurrentStatsComponent from "./currentStatsComponent";
+import ListGroup from 'react-bootstrap/lib/ListGroup';
+import ListGroupItem from 'react-bootstrap/lib/ListGroupItem';
 
 class App extends Component {
     constructor(props) {
@@ -133,6 +135,14 @@ class App extends Component {
                                             isRunning = {this.state.isRunning}
                                         />
                                     </div>
+                                </div>
+                                <div className="row">
+                                    <Panel collapsible defaultExpanded header="Gene descriptions">
+                                        <ListGroup fill>
+                                            <ListGroupItem>Size-Speed: Higher values mean larger size, but slower speed</ListGroupItem>
+                                            <ListGroupItem>Aging-Fertility: Higher values mean higher chance to reproduce, but lose energy faster</ListGroupItem>
+                                        </ListGroup>
+                                    </Panel>
                                 </div>
                             </Panel>
                         </div>

@@ -91,7 +91,7 @@ export default class Creature {
 
         this.position.add(this.currentVelocity);
         // Death always looming
-        this.health -= 0.2;
+        this.health -= this.dna.genes["Aging-Fertility"];
     };
 
     // Wraparound

@@ -96,6 +96,15 @@ public class SimulationRun {
         this.medianSizeSpeed = medianSizeSpeed;
     }
 
+    public Float getMedianAgingFertility() {
+        return medianAgingFertility;
+    }
+
+    public void setMedianAgingFertility(Float medianAgingFertility) {
+        this.medianAgingFertility = medianAgingFertility;
+    }
+
+
     private Integer foodEaten;
     private Integer krakenDeaths;
     private Integer shipDeaths;
@@ -106,6 +115,7 @@ public class SimulationRun {
     private Integer shipsBorn;
     private Integer worldTicks;
     private Float medianSizeSpeed;
+    private Float medianAgingFertility;
 
     public SimulationRun() {
     }
