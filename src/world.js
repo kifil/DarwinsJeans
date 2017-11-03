@@ -48,6 +48,12 @@ export default class World  {
             if (child != null) this.creatures.ships.push(child);
         }
 
+
+        this.updateRunStats();
+        this.display();
+    };
+
+    updateRunStats(){
         var self = this;
         this.creatures.ships.map(function(ship){
             self.simulationRunStats.averageSizeSpeed += ship.dna.genes["Speed-Size"];
@@ -55,9 +61,7 @@ export default class World  {
         this.simulationRunStats.averageSizeSpeed /= this.creatures.ships.length;
 
         this.simulationRunStats.worldTicks++;
-
-        this.display();
-    };
+    }
 
     display() {
         //display text on sketch
