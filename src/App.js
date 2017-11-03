@@ -36,7 +36,7 @@ class App extends Component {
     changeCountByKey(key, event){
         //set state can only be called outside of constructor and render methods
         //use the on change's new value to set the state
-        this.setState({[key]: ~~event.target.value});
+        this.setState({[key]: event.target.value});
     };
 
     startSim(isRunning, event){
