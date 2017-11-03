@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Button from 'react-bootstrap/lib/Button';
+import Panel from 'react-bootstrap/lib/Panel';
 import SimulationStatsRowComponent from './statsRowComponent'
 import ListGroup from 'react-bootstrap/lib/ListGroup';
 
@@ -47,17 +48,15 @@ export default class SimulationStatsComponent extends Component {
     };
 
     render() {
+        var button = <Button className="center-block" bsStyle="success" onClick={this.getStats.bind(this)}>Get Statistics</Button>;
         return(
-            <div>
-                <Button className="center-block" bsStyle="primary" onClick={this.getStats.bind(this)}>Get new stats</Button>
+            <Panel header={button} bsStyle="primary">
                 <div className="col-lg-12">
-                    <ListGroup>
-                        {this.state.simulationRunStatsList.map(function(statsRow, index){
-                            return <SimulationStatsRowComponent key = {index} simulationStatsRow = {statsRow}></SimulationStatsRowComponent>;
-                        })}
-                    </ListGroup>
+                    {this.state.simulationRunStatsList.map(function(statsRow, index){
+                        return <SimulationStatsRowComponent key = {index} simulationStatsRow = {statsRow}></SimulationStatsRowComponent>;
+                    })}
                 </div>
-            </div>
+            </Panel>
         );
     };
 }

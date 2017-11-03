@@ -6,7 +6,9 @@ import Button from 'react-bootstrap/lib/Button';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
 import FormControl from 'react-bootstrap/lib/FormControl';
 import ControlLabel from 'react-bootstrap/lib/ControlLabel';
+import Panel from 'react-bootstrap/lib/Panel';
 import SimulationStatsComponent from './simulationStatsComponent';
+import CurrentStatsComponent from "./currentStatsComponent";
 
 class App extends Component {
     constructor(props) {
@@ -41,10 +43,9 @@ class App extends Component {
 
     render() {
         var startStopButton = this.state.isRunning
-            ? <Button className="center-block" bsStyle="primary" onClick={this.startSim.bind(this, false)}>Stop</Button>
-            : <Button className="center-block" bsStyle="primary" onClick={this.startSim.bind(this, true)}>Start!</Button>
+            ? <Button className="center-block" bsStyle="danger" onClick={this.startSim.bind(this, false)}>Stop</Button>
+            : <Button className="center-block" bsStyle="success" onClick={this.startSim.bind(this, true)}>Start!</Button>
         ;
-
         return (
             <div>
                 <div className="App">
@@ -55,18 +56,8 @@ class App extends Component {
                 </div>
                 <div className="container">
                     <div className="row">
-                        <div className="col-lg-12">
-                            <div className="col-lg-9">
-                                <P5Wrapper
-                                    sketch={sketch}
-                                    foodCount = {this.state.foodCount}
-                                    predatorCount = {this.state.predatorCount}
-                                    preyCount = {this.state.preyCount}
-                                    healthLimit = {this.state.healthLimit}
-                                    foodRate = {this.state.foodRate}
-                                    mutationRate = {this.state.mutationRate}
-                                    isRunning = {this.state.isRunning}
-                                />
+                        <div className="col-lg-9">
+                            <Panel header={startStopButton} bsStyle="primary">
                                 <div className="row">
                                     <div className="col-lg-2">
                                         <FormGroup>
@@ -130,13 +121,27 @@ class App extends Component {
                                     </div>
                                 </div>
                                 <div className="row">
-                                    <div className="col-lg-12">
-                                        {startStopButton}
+                                    <div className="col-lg-9">
+                                        <P5Wrapper
+                                            sketch={sketch}
+                                            foodCount = {this.state.foodCount}
+                                            predatorCount = {this.state.predatorCount}
+                                            preyCount = {this.state.preyCount}
+                                            healthLimit = {this.state.healthLimit}
+                                            foodRate = {this.state.foodRate}
+                                            mutationRate = {this.state.mutationRate}
+                                            isRunning = {this.state.isRunning}
+                                        />
                                     </div>
                                 </div>
+                            </Panel>
+                        </div>
+                        <div className="col-lg-3">
+                            <div className="row">
+                                <CurrentStatsComponent/>
                             </div>
-                            <div className="col-lg-3">
-                                <SimulationStatsComponent></SimulationStatsComponent>
+                            <div className="row">
+                                <SimulationStatsComponent/>
                             </div>
                         </div>
                     </div>
