@@ -4,8 +4,9 @@ import Panel from 'react-bootstrap/lib/Panel';
 
 export default class CurrentStatsComponent extends Component {
     render() {
+        var header = <p className="text-center">Current Statistics</p>;
         return (
-            <Panel header="Current Statistics" bsStyle="primary">
+            <Panel header={header} bsStyle="primary">
                 <div>Simulation length: {this.props.worldTicks}</div>
                 <div>Food Eaten: {this.props.foodEaten}</div>
                 <div>Ship Deaths: {this.props.shipDeaths}</div>

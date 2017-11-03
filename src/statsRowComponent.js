@@ -1,19 +1,36 @@
 import React, { Component } from 'react';
-import ListGroupItem from 'react-bootstrap/lib/ListGroupItem';
+import Panel from 'react-bootstrap/lib/Panel';
 
 
 export default class SimulationStatsRowComponent extends Component {
     render() {
         return (
-            <ListGroupItem>
-                <div>Simulation number: {this.props.simulationStatsRow.id}</div>
-                <div>Simulation length: {this.props.simulationStatsRow.worldTicks}</div>
-                <div>Food Eaten: {this.props.simulationStatsRow.foodEaten}</div>
-                <div>Ship Deaths: {this.props.simulationStatsRow.shipDeaths}</div>
-                <div>Ship Berths: {this.props.simulationStatsRow.shipsBorn}</div>
-                <div>Final Ship Population: {this.props.simulationStatsRow.finalPopulationShips}</div>
-                <div>Avg. Size-Speed: {this.props.simulationStatsRow.averageSizeSpeed.toFixed(3)}</div>
-            </ListGroupItem>
+            <Panel header={`Simulation number: ${this.props.simulationStatsRow.id}`}>
+                <div class="row">
+                    <div class="col-md-9">Simulation length</div>
+                    <div class="col-md-3 text-right">{this.props.simulationStatsRow.worldTicks}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-9">Food Eaten</div>
+                    <div class="col-md-3 text-right">{this.props.simulationStatsRow.foodEaten}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-9">Ship Deaths</div>
+                    <div class="col-md-3 text-right">{this.props.simulationStatsRow.shipDeaths}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-9">Ship Berths</div>
+                    <div class="col-md-3 text-right">{this.props.simulationStatsRow.shipsBorn}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-9">Final Ship Population</div>
+                    <div class="col-md-3 text-right">{this.props.simulationStatsRow.finalPopulationShips}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">Avg. Size-Speed</div>
+                    <div class="col-md-4 text-right">{this.props.simulationStatsRow.averageSizeSpeed.toFixed(3)}</div>
+                </div>
+            </Panel>
         );
     };
 }
