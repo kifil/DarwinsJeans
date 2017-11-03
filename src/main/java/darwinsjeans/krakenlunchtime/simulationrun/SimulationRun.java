@@ -88,13 +88,22 @@ public class SimulationRun {
         this.shipsBorn = shipsBorn;
     }
 
-    public Float getAverageSizeSpeed() {
-        return averageSizeSpeed;
+    public Float getMedianSizeSpeed() {
+        return medianSizeSpeed;
     }
 
-    public void setAverageSizeSpeed(Float averageSizeSpeed) {
-        this.averageSizeSpeed = averageSizeSpeed;
+    public void setMedianSizeSpeed(Float medianSizeSpeed) {
+        this.medianSizeSpeed = medianSizeSpeed;
     }
+
+    public Float getMedianAgingFertility() {
+        return medianAgingFertility;
+    }
+
+    public void setMedianAgingFertility(Float medianAgingFertility) {
+        this.medianAgingFertility = medianAgingFertility;
+    }
+
 
     private Integer foodEaten;
     private Integer krakenDeaths;
@@ -105,7 +114,8 @@ public class SimulationRun {
     private Integer finalPopulationShips;
     private Integer shipsBorn;
     private Integer worldTicks;
-    private Float averageSizeSpeed;
+    private Float medianSizeSpeed;
+    private Float medianAgingFertility;
 
     public SimulationRun() {
     }
@@ -120,7 +130,7 @@ public class SimulationRun {
                          Integer finalPopulationShips,
                          Integer worldTicks,
                          Integer shipsBorn,
-                         Float averageSizeSpeed) {
+                         Float medianSizeSpeed) {
         this.id = id;
         this.foodEaten = foodEaten;
         this.krakenDeaths = krakenDeaths;
@@ -131,6 +141,6 @@ public class SimulationRun {
         this.finalPopulationShips = finalPopulationShips;
         this.worldTicks = worldTicks;
         this.shipsBorn = shipsBorn;
-        this.averageSizeSpeed = averageSizeSpeed;
+        this.medianSizeSpeed = medianSizeSpeed;
     }
 }

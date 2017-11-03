@@ -55,21 +55,52 @@ export default class World  {
     };
 
     updateRunStats(){
-        var self = this;
+        this.calculateMedianSpeedSize();
+        this.calculateMedianAgingFertility();
+        this.simulationRunStats.worldTicks++;
+    }
+
+    calculateMedianSpeedSize(){
+        var geneValues = [];
         this.creatures.ships.map(function(ship){
-            self.simulationRunStats.averageSizeSpeed += ship.dna.genes["Speed-Size"];
+            geneValues.push(ship.dna.genes["Speed-Size"]);
         });
 
         this.simulationRunStats.currentPopulationShips = this.creatures.ships.length;
-        this.simulationRunStats.averageSizeSpeed /= this.creatures.ships.length;
+        this.simulationRunStats.medianSizeSpeed = this.median(geneValues, this.simulationRunStats.medianSizeSpeed);
         this.simulationRunStats.worldTicks++;
+
+    }
+
+    calculateMedianAgingFertility(){
+        var geneValues = [];
+        this.creatures.ships.map(function(ship){
+            geneValues.push(ship.dna.genes["Aging-Fertility"]);
+        });
+
+        this.simulationRunStats.medianAgingFertility = this.median(geneValues, this.simulationRunStats.medianAgingFertility);
+    }
+
+    median(numbers, lastValue) {
+        var median = 0, numsLen = numbers.length;
+        numbers.sort();
+
+        if (numsLen % 2 === 0) {
+            median = (numbers[numsLen / 2 - 1] + numbers[numsLen / 2]) / 2;
+        } else {
+            median = numbers[(numsLen - 1) / 2];
+        }
+        if(isNaN(median)){
+            return lastValue;
+        }
+        return median;
     }
 
     display() {
         //display text on sketch
         this.sketch.textSize(16);
         this.sketch.fill(0,0,0);
-        this.sketch.text("Average Size-Speed: " + this.simulationRunStats.averageSizeSpeed.toFixed(3), 5,790);
+        this.sketch.text("© 2017 Darwin's Jeans", 5,790);
     }
 
     stopRun() {

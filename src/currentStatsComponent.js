@@ -45,8 +45,12 @@ export default class CurrentStatsComponent extends Component {
                     <div className="col-md-3 text-right">{this.state.simulationRunStats.currentPopulationShips}</div>
                 </div>
                 <div className="row">
-                    <div className="col-md-8">Avg. Size-Speed</div>
-                    <div className="col-md-4 text-right">{this.state.simulationRunStats.averageSizeSpeed > 0 ? this.state.simulationRunStats.averageSizeSpeed.toFixed(3) : ''}</div>
+                    <div className="col-md-8">Median Size-Speed</div>
+                    <div className="col-md-4 text-right">{this.state.simulationRunStats.medianSizeSpeed > 0 ? this.state.simulationRunStats.medianSizeSpeed.toFixed(3) : ''}</div>
+                </div>
+                <div className="row">
+                    <div className="col-md-8">Median Aging-Fertility</div>
+                    <div className="col-md-4 text-right">{this.state.simulationRunStats.medianAgingFertility > 0 ? this.state.simulationRunStats.medianAgingFertility.toFixed(3) : ''}</div>
                 </div>
             </Panel>
         );

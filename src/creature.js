@@ -37,17 +37,19 @@ export default class Creature {
 
     // A creature can find food and eat it
     eat(f) {
-        var food = f.getFood();
-        // Are we touching any food objects?
-        for (var i = food.length-1; i >= 0; i--) {
-            var foodLocation = food[i];
-            var d = p5.Vector.dist(this.position, foodLocation);
-            // If we are, juice up our strength!
-            if (d < this.r/2) {
-                this.simulationRunStats.foodEaten++;
-                this.health += 100;
-                food.splice(i,1);
-                this.p.sounds.getfish.play();
+        if (this.health < this.simulationSettings.healthLimit) {
+            var food = f.getFood();
+            // Are we touching any food objects?
+            for (var i = food.length - 1; i >= 0; i--) {
+                var foodLocation = food[i];
+                var d = p5.Vector.dist(this.position, foodLocation);
+                // If we are, juice up our strength!
+                if (d < this.r / 2) {
+                    this.simulationRunStats.foodEaten++;
+                    this.health += 100;
+                    food.splice(i, 1);
+                    this.p.sounds.getfish.play();
+                }
             }
         }
     };
@@ -91,7 +93,7 @@ export default class Creature {
 
         this.position.add(this.currentVelocity);
         // Death always looming
-        this.health -= 0.2;
+        this.health -= this.dna.genes["Aging-Fertility"];
     };
 
     // Wraparound

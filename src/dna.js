@@ -6,7 +6,7 @@
 
 // Constructor (makes a random DNA)
 export default function DNA(p, newGenes) {
-    this.genesList = ["Speed-Size","Carrots"];
+    this.genesList = ["Speed-Size","Aging-Fertility"];
 
     if (newGenes) {
         this.genes = newGenes;
@@ -34,7 +34,6 @@ export default function DNA(p, newGenes) {
     this.mutate = function(mutationRate) {
         for (var key in this.genes) {
             if (p.random(1) < mutationRate) {
-                console.log("I mutated", mutationRate);
                 this.genes[key] = p.random(0,1);
             }
         }
