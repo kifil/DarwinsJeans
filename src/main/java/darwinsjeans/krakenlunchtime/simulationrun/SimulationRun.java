@@ -88,6 +88,14 @@ public class SimulationRun {
         this.shipsBorn = shipsBorn;
     }
 
+    public Float getAverageSizeSpeed() {
+        return averageSizeSpeed;
+    }
+
+    public void setAverageSizeSpeed(Float averageSizeSpeed) {
+        this.averageSizeSpeed = averageSizeSpeed;
+    }
+
     private Integer foodEaten;
     private Integer krakenDeaths;
     private Integer shipDeaths;
@@ -97,11 +105,22 @@ public class SimulationRun {
     private Integer finalPopulationShips;
     private Integer shipsBorn;
     private Integer worldTicks;
+    private Float averageSizeSpeed;
 
     public SimulationRun() {
     }
 
-    public SimulationRun(Long id, Integer foodEaten, Integer krakenDeaths, Integer shipDeaths, Integer maxPopulationKraken, Integer maxPopulationShips, Integer finalPopulationKraken, Integer finalPopulationShips, Integer worldTicks, Integer shipsBorn) {
+    public SimulationRun(Long id,
+                         Integer foodEaten,
+                         Integer krakenDeaths,
+                         Integer shipDeaths,
+                         Integer maxPopulationKraken,
+                         Integer maxPopulationShips,
+                         Integer finalPopulationKraken,
+                         Integer finalPopulationShips,
+                         Integer worldTicks,
+                         Integer shipsBorn,
+                         Float averageSizeSpeed) {
         this.id = id;
         this.foodEaten = foodEaten;
         this.krakenDeaths = krakenDeaths;
@@ -112,5 +131,6 @@ public class SimulationRun {
         this.finalPopulationShips = finalPopulationShips;
         this.worldTicks = worldTicks;
         this.shipsBorn = shipsBorn;
+        this.averageSizeSpeed = averageSizeSpeed;
     }
 }

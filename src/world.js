@@ -60,6 +60,7 @@ export default class World  {
     };
 
     display() {
+        //display text on sketch
         this.sketch.textSize(16);
         this.sketch.fill(0,0,0);
         this.sketch.text("Average Size-Speed: " + this.simulationRunStats.averageSizeSpeed.toFixed(3), 5,790);
