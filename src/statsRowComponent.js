@@ -12,7 +12,7 @@ export default class SimulationStatsRowComponent extends Component {
                 <div>Ship Deaths: {this.props.simulationStatsRow.shipDeaths}</div>
                 <div>Ship Berths: {this.props.simulationStatsRow.shipsBorn}</div>
                 <div>Final Ship Population: {this.props.simulationStatsRow.finalPopulationShips}</div>
-                <div>Avg. Size-Speed: {this.props.simulationStatsRow.averageSizeSpeed.toFixed(3)}</div>
+                <div>Avg. Size-Speed: {this.props.simulationStatsRow.medianSizeSpeed.toFixed(3)}</div>
             </ListGroupItem>
         );
     };

@@ -55,19 +55,42 @@ export default class World  {
 
     updateRunStats(){
         var self = this;
+        var sizeSpeedArray = [];
         this.creatures.ships.map(function(ship){
-            self.simulationRunStats.averageSizeSpeed += ship.dna.genes["Speed-Size"];
+            sizeSpeedArray.push(ship.dna.genes["Speed-Size"]);
         });
-        this.simulationRunStats.averageSizeSpeed /= this.creatures.ships.length;
+
+        this.simulationRunStats.medianSizeSpeed = this.median(sizeSpeedArray, this.simulationRunStats.medianSizeSpeed);
 
         this.simulationRunStats.worldTicks++;
+    }
+
+    median(numbers, lastValue) {
+        // median of [3, 5, 4, 4, 1, 1, 2, 3] = 3
+        var median = 0, numsLen = numbers.length;
+        numbers.sort();
+
+        if (
+            numsLen % 2 === 0 // is even
+        ) {
+            // average of two middle numbers
+            median = (numbers[numsLen / 2 - 1] + numbers[numsLen / 2]) / 2;
+        } else { // is odd
+            // middle number only
+            median = numbers[(numsLen - 1) / 2];
+        }
+        if(isNaN(median)){
+            return lastValue;
+        }
+
+        return median;
     }
 
     display() {
         //display text on sketch
         this.sketch.textSize(16);
         this.sketch.fill(0,0,0);
-        this.sketch.text("Average Size-Speed: " + this.simulationRunStats.averageSizeSpeed.toFixed(3), 5,790);
+        this.sketch.text("Median Size-Speed: " + this.simulationRunStats.medianSizeSpeed.toFixed(3), 5,790);
     }
 
     stopRun() {
