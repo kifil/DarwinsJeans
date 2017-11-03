@@ -25,8 +25,8 @@ export default class Creature {
 
         // DNA will determine size and maxspeed
         // The bigger the creature, the slower it is
-        this.maxspeed = p.map(this.dna.genes[0], 0, 1, 15, 0);
-        this.r = p.map(this.dna.genes[0], 0, 1, 0, 50);
+        this.maxspeed = p.map(this.dna.genes["Speed-Size"], 0, 1, 15, 0);
+        this.r = p.map(this.dna.genes["Speed-Size"], 0, 1, 0, 50);
     }
 
     run() {

@@ -48,17 +48,30 @@ export default class World  {
             if (child != null) this.creatures.ships.push(child);
         }
 
-        this.simulationRunStats.worldTicks++;
+
+        this.updateRunStats();
+        this.display();
     };
 
+    updateRunStats(){
+        var self = this;
+        this.creatures.ships.map(function(ship){
+            self.simulationRunStats.averageSizeSpeed += ship.dna.genes["Speed-Size"];
+        });
+        this.simulationRunStats.averageSizeSpeed /= this.creatures.ships.length;
+
+        this.simulationRunStats.worldTicks++;
+    }
+
+    display() {
+        //display text on sketch
+        this.sketch.textSize(16);
+        this.sketch.fill(0,0,0);
+        this.sketch.text("Average Size-Speed: " + this.simulationRunStats.averageSizeSpeed.toFixed(3), 5,790);
+    }
+
     stopRun() {
-        // var that = this;
-        // this.simulationRun.foodEaten = 0;
-        // this.bloops.map(function(obj){
-        //     that.simulationRun.foodEaten += obj.foodEaten;
-        // });
         this.simulationRunStats.finalPopulationShips = this.creatures.ships.length;
-        console.log('this.simulationRunStats', this.simulationRunStats);
     };
 
 
