@@ -8,7 +8,7 @@ export default class Kraken extends Creature {
     constructor(p, l, dna_, simulationRunStats, simulationSettings) {
         super(p, l, dna_, simulationRunStats, simulationSettings);
 
-        // Make krakens big but don't affect their dna or speed
+        // Make krakens bigger but don't affect their dna or speed
         this.r *= 1.5;
     }
 
@@ -27,7 +27,7 @@ export default class Kraken extends Creature {
             let distance = p5.Vector.dist(this.position, food.position);
 
             if (distance < this.r) {
-                this.simulationRunStats.foodEaten++;
+                this.simulationRunStats.shipDeaths++;
                 this.health += food.health;
                 foodArray.splice(i, 1);
                 this.p.sounds.getfish.play();
@@ -37,14 +37,14 @@ export default class Kraken extends Creature {
 
     reproduce() {
         // Creature reproduce if health is over 300, just cuz
-        var fertilityRate = 0.005 * (this.dna.genes["Aging-Fertility"] * 2);
+        var fertilityRate = 0.005 * (this.dna.genes["Aging-Fertility"] / 1.5);
         if(this.health >= 200 && Math.random() < fertilityRate){
             this.health -= 100;
             // Child is exact copy of single parent
             var childDNA = this.dna.copy();
             // Child DNA can mutate
             childDNA.mutate(this.simulationSettings.mutationRate);
-            //this.simulationRunStats.shipsBorn++;
+            this.simulationRunStats.krakenBorn++;
             this.p.sounds.krakenReproduce.play();
             return new Kraken(this.p, this.position, childDNA, this.simulationRunStats, this.simulationSettings);
         }

@@ -46,9 +46,16 @@ export default class World  {
 
     // Run the world
     run() {
+        var extinction = false;
         for(let key in this.creatures){
-            //console.log(this.creatures[key]);
+            if(this.creatures[key].length === 0 && key !== 'fish'){
+                extinction = true;
+                this.displayExtinction(`All the ${key} have perished!`);
+            }
         }
+        /*if(extinction){
+            return;
+        }*/
 
         // Run the fish
         for (let i = this.creatures.fish.length-1; i >= 0; i--) {
@@ -160,7 +167,14 @@ export default class World  {
         //display text on sketch
         this.sketch.textSize(16);
         this.sketch.fill(0,0,0);
-        this.sketch.text("© 2017 Darwin's Jeans", 5,790);
+        this.sketch.text("© 2017 Darwin's Jeans", 5, 790);
+    };
+
+    displayExtinction(message) {
+        //display text on sketch
+        this.sketch.textSize(32);
+        this.sketch.fill(0,0,0);
+        this.sketch.text(message, 5, 32);
     };
 
     stopRun() {
