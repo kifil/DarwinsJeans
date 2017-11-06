@@ -1,20 +1,20 @@
 export default class SimulationSettings {
-    predatorCount = 0
-    preyCount = 0
-    foodCount = 0
+    krakenCount = 0
+    shipCount = 0
+    fishCount = 0
     healthLimit = 0
     foodRate = 0
     mutationRate = 0
 
-    constructor(predatorCount,preyCount,foodCount,healthLimit,foodRate,mutationRate){
-        if(predatorCount){
-            this.predatorCount = predatorCount;
+    constructor(krakenCount,shipCount,fishCount,healthLimit,foodRate,mutationRate){
+        if(krakenCount){
+            this.krakenCount = krakenCount;
         }
-        if(preyCount){
-            this.preyCount = preyCount;
+        if(shipCount){
+            this.shipCount = shipCount;
         }
-        if(foodCount){
-            this.foodCount = foodCount;
+        if(fishCount){
+            this.fishCount = fishCount;
         }
         if(healthLimit){
             this.healthLimit = healthLimit;

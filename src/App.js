@@ -19,9 +19,9 @@ class App extends Component {
 
         //this is how you set state in the constructor
         this.state = {
-            predatorCount: 5,
-            preyCount: 20,
-            foodCount: 100,
+            krakenCount: 5,
+            shipCount: 20,
+            fishCount: 100,
             healthLimit: 200,
             foodRate: 0.1,
             mutationRate: .01,
@@ -67,8 +67,8 @@ class App extends Component {
                                             <FormControl
                                                 ref="numKrakens"
                                                 placeholder="#Krakens"
-                                                defaultValue={this.state.predatorCount}
-                                                onChange={this.changeCountByKey.bind(this, "predatorCount")} />
+                                                defaultValue={this.state.krakenCount}
+                                                onChange={this.changeCountByKey.bind(this, "krakenCount")} />
                                         </FormGroup>
                                     </div>
                                     <div className="col-lg-2">
@@ -77,8 +77,8 @@ class App extends Component {
                                             <FormControl
                                                 ref="numShips"
                                                 placeholder="#Ships"
-                                                defaultValue={this.state.preyCount}
-                                                onChange={this.changeCountByKey.bind(this, "preyCount")} />
+                                                defaultValue={this.state.shipCount}
+                                                onChange={this.changeCountByKey.bind(this, "shipCount")} />
                                         </FormGroup>
                                     </div>
                                     <div className="col-lg-2">
@@ -87,8 +87,8 @@ class App extends Component {
                                             <FormControl
                                                 ref="numFish"
                                                 placeholder="#Fish"
-                                                defaultValue={this.state.foodCount}
-                                                onChange={this.changeCountByKey.bind(this, "foodCount")} />
+                                                defaultValue={this.state.fishCount}
+                                                onChange={this.changeCountByKey.bind(this, "fishCount")} />
                                         </FormGroup>
                                     </div>
                                     <div className="col-lg-2">
@@ -126,9 +126,9 @@ class App extends Component {
                                     <div className="col-lg-9">
                                         <P5Wrapper
                                             sketch={sketch}
-                                            foodCount = {this.state.foodCount}
-                                            predatorCount = {this.state.predatorCount}
-                                            preyCount = {this.state.preyCount}
+                                            fishCount = {this.state.fishCount}
+                                            krakenCount = {this.state.krakenCount}
+                                            shipCount = {this.state.shipCount}
                                             healthLimit = {this.state.healthLimit}
                                             foodRate = {this.state.foodRate}
                                             mutationRate = {this.state.mutationRate}

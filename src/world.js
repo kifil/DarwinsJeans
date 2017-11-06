@@ -20,7 +20,7 @@ export default class World  {
         // Start with initial food and creatures
         this.food = new Food(sketch, this.simulationSettings);
         this.creatures.ships = [];
-        for (var i = 0; i < this.simulationSettings.preyCount; i++) {
+        for (var i = 0; i < this.simulationSettings.shipCount; i++) {
             var l = sketch.createVector(sketch.random(sketch.width), sketch.random(sketch.height));
             var dna = new DNA(sketch);
             this.creatures.ships.push(new Ship(sketch, l, dna, 'ship', this.simulationRunStats, this.simulationSettings));

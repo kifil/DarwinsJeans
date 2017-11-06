@@ -1,7 +1,7 @@
 export default function Food(p, simulationSettings) {
     // Start with some food
     this.food = [];
-    for (var i = 0; i < simulationSettings.foodCount; i++) {
+    for (var i = 0; i < simulationSettings.fishCount; i++) {
         this.food.push(p.createVector(p.random(p.width),p.random(p.height)));
     }
 

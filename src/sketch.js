@@ -65,9 +65,9 @@ export default function sketch (p) {
 
     p.myCustomRedrawAccordingToNewPropsHandler = function (props) {
         simulationSettings = new SimulationSettings(
-            props.predatorCount,
-            props.preyCount,
-            props.foodCount,
+            props.krakenCount,
+            props.shipCount,
+            props.fishCount,
             props.healthLimit,
             props.foodRate,
             props.mutationRate);

@@ -8,9 +8,6 @@ export default class Ship extends Creature{
 
     // At any moment there is a teeny, tiny chance a creature will reproduce
     reproduce() {
-        // asexual reproduction
-        //if (p.random(1) < 0.0005) {
-
         // Creature reproduce if health is over 300, just cuz
         var fertilityRate = 0.005 * (this.dna.genes["Aging-Fertility"] * 2);
         if(this.health >= 200 && Math.random() < fertilityRate){
