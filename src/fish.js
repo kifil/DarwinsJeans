@@ -1,6 +1,7 @@
 import Creature from './creature';
 
 export default class Fish extends Creature{
+    type = 'fish';
     health = this.simulationSettings.healthLimit;
     //constructor(p, l, dna_, type, simulationRunStats){
     // super(p, l, dna_, type, simulationRunStats);
@@ -24,8 +25,8 @@ export default class Fish extends Creature{
 
     reproduce() {
         // There's a small chance food will appear randomly
-        if (p.random(1) < this.simulationSettings.foodRate) {
-            this.food.push(p.createVector(p.random(p.width),p.random(p.height)));
+        if (this.p.random(1) < this.simulationSettings.foodRate) {
+            this.food.push(this.p.createVector(this.p.random(this.p.width),this.p.random(this.p.height)));
         }
     }
 }

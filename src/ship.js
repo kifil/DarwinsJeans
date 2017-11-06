@@ -1,6 +1,7 @@
 import Creature from './creature';
 
 export default class Ship extends Creature{
+    type = 'ship';
     health = this.simulationSettings.healthLimit;
     //constructor(p, l, dna_, type, simulationRunStats){
     // super(p, l, dna_, type, simulationRunStats);
@@ -22,7 +23,7 @@ export default class Ship extends Creature{
             childDNA.mutate(this.simulationSettings.mutationRate);
             this.simulationRunStats.shipsBorn++;
             this.p.sounds.reproduce.play();
-            return new Ship(this.p, this.position, childDNA, this.type, this.simulationRunStats, this.simulationSettings);
+            return new Ship(this.p, this.position, childDNA, this.simulationRunStats, this.simulationSettings);
         }
 
         return null;

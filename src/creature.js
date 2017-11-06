@@ -10,11 +10,10 @@ export default class Creature {
     simulationRunStats = {};
     currentVelocity = {};
 
-    constructor(p, l, dna_, type, simulationRunStats, simulationSettings){
+    constructor(p, l, dna_, simulationRunStats, simulationSettings){
         this.p = p;
         this.l = l;
         this.dna = dna_;
-        this.type = type;
         this.simulationRunStats = simulationRunStats;
         this.simulationSettings = simulationSettings;
 

@@ -1,5 +1,6 @@
 import Food from './food'
 import Ship from './ship'
+import Fish from './fish'
 import DNA from './dna'
 
 export default class World  {
@@ -19,11 +20,21 @@ export default class World  {
 
         // Start with initial food and creatures
         this.food = new Food(sketch, this.simulationSettings);
+
+        // Create fish
+        this.creatures.fish = [];
+        var l = sketch.createVector(sketch.random(sketch.width), sketch.random(sketch.height));
+        var dna = new DNA(sketch);
+        for (var i = 0; i < this.simulationSettings.fishCount; i++) {
+            this.creatures.fish.push(new Fish(sketch, l, dna, this.simulationRunStats, this.simulationSettings));
+        }
+
+        // Create ships
         this.creatures.ships = [];
         for (var i = 0; i < this.simulationSettings.shipCount; i++) {
             var l = sketch.createVector(sketch.random(sketch.width), sketch.random(sketch.height));
             var dna = new DNA(sketch);
-            this.creatures.ships.push(new Ship(sketch, l, dna, 'ship', this.simulationRunStats, this.simulationSettings));
+            this.creatures.ships.push(new Ship(sketch, l, dna, this.simulationRunStats, this.simulationSettings));
         }
     }
 
@@ -38,6 +49,7 @@ export default class World  {
             var b = this.creatures.ships[i];
             b.run();
             b.eat(this.food);
+
             // If it's dead, kill it and make food
             if (b.dead()) {
                 this.creatures.ships.splice(i, 1);
