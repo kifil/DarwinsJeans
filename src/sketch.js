@@ -34,7 +34,8 @@ export default function sketch (p) {
     p.sounds = {
         death: new Howler.Howl({src:['assets/sounds/death.wav']}),
         getfish: new Howler.Howl({src:['assets/sounds/getfish.wav']}),
-        reproduce: new Howler.Howl({src:['assets/sounds/reproduce.wav']}),
+        shipReproduce: new Howler.Howl({src:['assets/sounds/shipReproduce.wav']}),
+        krakenReproduce: new Howler.Howl({src:['assets/sounds/krakenReproduce.wav']}),
     };
 
     p.setup = function () {

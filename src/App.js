@@ -19,7 +19,7 @@ class App extends Component {
 
         //this is how you set state in the constructor
         this.state = {
-            krakenCount: 5,
+            krakenCount: 2,
             shipCount: 20,
             fishCount: 100,
             healthLimit: 200,

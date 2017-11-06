@@ -1,15 +1,22 @@
 import Creature from './creature';
 import p5 from 'p5';
 
-export default class Ship extends Creature{
-    type = 'ship';
+export default class Kraken extends Creature {
+    type = 'kraken';
     health = this.simulationSettings.healthLimit;
 
+    constructor(p, l, dna_, simulationRunStats, simulationSettings) {
+        super(p, l, dna_, simulationRunStats, simulationSettings);
+
+        // Make krakens big but don't affect their dna or speed
+        this.r *= 1.5;
+    }
+
     getDisplayImage(){
-        return this.currentVelocity.x > 0 ? this.p.images.shipRightImg : this.p.images.shipLeftImg;
+        return this.p.images.krakenImg;
     };
 
-    // A ship can find fish and eat it
+    // A kraken can find ships and eat them
     eat(foodArray) {
         if (this.health >= this.simulationSettings.healthLimit) {
             return;
@@ -37,9 +44,9 @@ export default class Ship extends Creature{
             var childDNA = this.dna.copy();
             // Child DNA can mutate
             childDNA.mutate(this.simulationSettings.mutationRate);
-            this.simulationRunStats.shipsBorn++;
-            this.p.sounds.shipReproduce.play();
-            return new Ship(this.p, this.position, childDNA, this.simulationRunStats, this.simulationSettings);
+            //this.simulationRunStats.shipsBorn++;
+            this.p.sounds.krakenReproduce.play();
+            return new Kraken(this.p, this.position, childDNA, this.simulationRunStats, this.simulationSettings);
         }
 
         return null;
@@ -50,7 +57,7 @@ export default class Ship extends Creature{
         // TODO: update this to spawn a fish and delete itself
         if (this.health < 0.0) {
             this.p.sounds.death.play();
-            this.simulationRunStats.shipDeaths++;
+            this.simulationRunStats.krakenDeaths++;
             return true;
         }
 

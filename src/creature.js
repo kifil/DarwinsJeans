@@ -1,5 +1,3 @@
-import p5 from 'p5';
-
 export default class Creature {
     type = 'creature';
     health = -1;
@@ -34,26 +32,8 @@ export default class Creature {
         this.display();
     };
 
-    // A creature can find food and eat it
-    eat(f) {
-        if (this.health >= this.simulationSettings.healthLimit) {
-            return;
-        }
-
-        var food = f.getFood();
-        // Are we touching any food objects?
-        for (var i = food.length - 1; i >= 0; i--) {
-            var foodLocation = food[i];
-            var d = p5.Vector.dist(this.position, foodLocation);
-            // If we are, juice up our strength!
-            if (d < this.r / 2) {
-                this.simulationRunStats.foodEaten++;
-                this.health += 100;
-                food.splice(i, 1);
-                this.p.sounds.getfish.play();
-            }
-        }
-
+    eat(foodArray){
+        // Not implemented
     };
 
     // Method to display
@@ -89,7 +69,7 @@ export default class Creature {
 
     getDisplayImage(){
         // Not implemented
-    }
+    };
 
     // Method to update position
     update() {
@@ -105,11 +85,11 @@ export default class Creature {
         this.xoff += 0.01;
         this.yoff += 0.01;
         this.position.add(this.currentVelocity);
-    }
+    };
 
     age(){
         this.health -= this.dna.genes["Aging-Fertility"];
-    }
+    };
 
     // Movement wraparound
     borders() {
