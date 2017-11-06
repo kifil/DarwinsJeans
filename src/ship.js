@@ -6,6 +6,10 @@ export default class Ship extends Creature{
     // super(p, l, dna_, type, simulationRunStats);
     //}
 
+    getDisplayImage(){
+        return this.currentVelocity.x > 0 ? this.p.images.shipRightImg : this.p.images.shipLeftImg;
+    }
+
     // At any moment there is a teeny, tiny chance a creature will reproduce
     reproduce() {
         // Creature reproduce if health is over 300, just cuz
@@ -23,4 +27,16 @@ export default class Ship extends Creature{
 
         return null;
     }
+
+    // Death
+    dead() {
+        // TODO: update this to spawn a fish and delete itself
+        if (this.health < 0.0) {
+            this.p.sounds.death.play();
+            this.simulationRunStats.shipDeaths++;
+            return true;
+        }
+
+        return false;
+    };
 }

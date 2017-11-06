@@ -65,6 +65,14 @@ export default class Creature {
 
         p.ellipse(this.position.x, this.position.y, this.r, this.r);
 */
+        this.displayHealthBar();
+
+        let image = this.getDisplayImage();
+        this.p.imageMode(this.p.CENTER);
+        this.p.image(image, this.position.x, this.position.y, this.r, this.r);
+    };
+
+    displayHealthBar(){
         this.p.rectMode(this.p.CORNER);
         var healthBarWidth = this.r * 2;
         var healthPercent = this.health / 200;
@@ -78,28 +86,33 @@ export default class Creature {
         this.p.rect(this.position.x - this.r,this.position.y - this.r, healthBarWidth, 8);
         this.p.fill(255, this.health, 0, 255);
         this.p.rect(this.position.x - this.r,this.position.y - this.r, healthBarWidth * healthPercent, 8);
+    }
 
-        let image = this.currentVelocity.x > 0 ? this.p.images.shipRightImg : this.p.images.shipLeftImg;
-        this.p.imageMode(this.p.CENTER);
-        this.p.image(image, this.position.x, this.position.y, this.r, this.r);
-    };
+    getDisplayImage(){
+        // Not implemented
+    }
 
     // Method to update position
     update() {
-        // Simple movement based on perlin noise
+        this.move();
+        this.age();
+    };
 
+    move(){
+        // Simple movement based on perlin noise
         var vx = this.p.map(this.p.noise(this.xoff),0,1,-this.maxspeed,this.maxspeed);
         var vy = this.p.map(this.p.noise(this.yoff),0,1,-this.maxspeed,this.maxspeed);
         this.currentVelocity = this.p.createVector(vx,vy);
         this.xoff += 0.01;
         this.yoff += 0.01;
-
         this.position.add(this.currentVelocity);
-        // Death always looming
-        this.health -= this.dna.genes["Aging-Fertility"];
-    };
+    }
 
-    // Wraparound
+    age(){
+        this.health -= this.dna.genes["Aging-Fertility"];
+    }
+
+    // Movement wraparound
     borders() {
         if (this.position.x < -this.r){
             this.position.x = this.p.width;
@@ -112,14 +125,8 @@ export default class Creature {
         }
     };
 
-    // Death
     dead() {
-        if (this.health < 0.0) {
-            this.p.sounds.death.play();
-            this.simulationRunStats.shipDeaths++;
-            return true;
-        }
-
+        // Not implemented
         return false;
     };
 }
