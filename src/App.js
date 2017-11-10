@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import './App.css';
 import P5Wrapper from 'react-p5-wrapper';
 import sketch from './sketch'
+import Row from 'react-bootstrap/lib/Row';
+import Col from 'react-bootstrap/lib/Col';
+import Grid from 'react-bootstrap/lib/Grid';
 import Button from 'react-bootstrap/lib/Button';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
 import FormControl from 'react-bootstrap/lib/FormControl';
@@ -56,12 +59,12 @@ class App extends Component {
                         <h1 className="App-title">Kraken Lunch Time</h1>
                     </header>
                 </div>
-                <div className="container">
-                    <div className="row">
-                        <div className="col-lg-9">
+                <Grid>
+                    <Row>
+                        <Col lg={9}>
                             <Panel header={startStopButton} bsStyle="primary">
-                                <div className="row">
-                                    <div className="col-lg-2">
+                                <Row>
+                                    <Col lg={2}>
                                         <FormGroup>
                                             <ControlLabel>Krakens</ControlLabel>
                                             <FormControl
@@ -70,8 +73,8 @@ class App extends Component {
                                                 defaultValue={this.state.krakenCount}
                                                 onChange={this.changeCountByKey.bind(this, "krakenCount")} />
                                         </FormGroup>
-                                    </div>
-                                    <div className="col-lg-2">
+                                    </Col>
+                                    <Col lg={2}>
                                         <FormGroup>
                                             <ControlLabel>Ships</ControlLabel>
                                             <FormControl
@@ -80,8 +83,8 @@ class App extends Component {
                                                 defaultValue={this.state.shipCount}
                                                 onChange={this.changeCountByKey.bind(this, "shipCount")} />
                                         </FormGroup>
-                                    </div>
-                                    <div className="col-lg-2">
+                                    </Col>
+                                    <Col lg={2}>
                                         <FormGroup>
                                             <ControlLabel>Fish</ControlLabel>
                                             <FormControl
@@ -90,8 +93,8 @@ class App extends Component {
                                                 defaultValue={this.state.fishCount}
                                                 onChange={this.changeCountByKey.bind(this, "fishCount")} />
                                         </FormGroup>
-                                    </div>
-                                    <div className="col-lg-2">
+                                    </Col>
+                                    <Col lg={2}>
                                         <FormGroup>
                                             <ControlLabel>Starting Health</ControlLabel>
                                             <FormControl
@@ -100,8 +103,8 @@ class App extends Component {
                                                 defaultValue={this.state.healthLimit}
                                                 onChange={this.changeCountByKey.bind(this, "healthLimit")} />
                                         </FormGroup>
-                                    </div>
-                                    <div className="col-lg-2">
+                                    </Col>
+                                    <Col lg={2}>
                                         <FormGroup>
                                             <ControlLabel>Food Rate %</ControlLabel>
                                             <FormControl
@@ -110,8 +113,8 @@ class App extends Component {
                                                 defaultValue={this.state.foodRate}
                                                 onChange={this.changeCountByKey.bind(this, "foodRate")} />
                                         </FormGroup>
-                                    </div>
-                                    <div className="col-lg-2">
+                                    </Col>
+                                    <Col lg={2}>
                                         <FormGroup>
                                             <ControlLabel>Mutation Rate %</ControlLabel>
                                             <FormControl
@@ -120,45 +123,45 @@ class App extends Component {
                                                 defaultValue={this.state.mutationRate}
                                                 onChange={this.changeCountByKey.bind(this, "mutationRate")} />
                                         </FormGroup>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-lg-9">
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col lg={9}>
                                         <P5Wrapper
                                             sketch={sketch}
                                             fishCount = {this.state.fishCount}
-                                            krakenCount = {this.state.krakenCount}
+                                            predatorCount = {this.state.krakenCount}
                                             shipCount = {this.state.shipCount}
                                             healthLimit = {this.state.healthLimit}
                                             foodRate = {this.state.foodRate}
                                             mutationRate = {this.state.mutationRate}
                                             isRunning = {this.state.isRunning}
                                         />
-                                    </div>
-                                </div>
-                                <div className="row">
+                                    </Col>
+                                </Row>
+                                <Row>
                                     <Panel collapsible defaultExpanded header="Gene descriptions">
                                         <ListGroup fill>
                                             <ListGroupItem>Size-Speed: Higher values mean larger size, but slower speed</ListGroupItem>
                                             <ListGroupItem>Aging-Fertility: Higher values mean higher chance to reproduce, but lose energy faster</ListGroupItem>
                                         </ListGroup>
                                     </Panel>
-                                </div>
+                                </Row>
                             </Panel>
-                        </div>
-                        <div className="col-lg-3">
-                            <div className="row">
+                        </Col>
+                        <Col lg={3}>
+                            <Row>
                                 <CurrentStatsComponent
                                     sketch = {sketch}
                                     simulationRunStats = {window.world.simulationRunStats}
                                 />
-                            </div>
-                            <div className="row">
+                            </Row>
+                            <Row>
                                 <SimulationStatsComponent/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                            </Row>
+                        </Col>
+                    </Row>
+                </Grid>
             </div>
         );
     };
