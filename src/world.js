@@ -2,6 +2,7 @@ import Ship from './ship'
 import Fish from './fish'
 import Kraken from './kraken'
 import DNA from './dna'
+import RubberDuck from "./rubberduck";
 
 export default class World  {
     sketch = {};
@@ -11,6 +12,7 @@ export default class World  {
         fish: [],
         ships: [],
         kraken: [],
+        rubberDucks: [],
     };
 
     constructor(sketch,simulationRunStats, simulationSettings){
@@ -41,6 +43,15 @@ export default class World  {
             let vector = sketch.createVector(sketch.random(sketch.width), sketch.random(sketch.height));
             let dna = new DNA(sketch);
             this.creatures.kraken.push(new Kraken(sketch, vector, dna, this.simulationRunStats, this.simulationSettings));
+        }
+
+        // Spawn duck
+        this.creatures.rubberDucks = [];
+        for (let i = 0; i < 1; i++) {
+            let vector = sketch.createVector(sketch.random(sketch.width), sketch.random(sketch.height));
+            let dna = new DNA(sketch);
+            dna.genes["Speed-Size"] = 0.9;
+            this.creatures.rubberDucks.push(new RubberDuck(sketch, vector, dna, this.simulationRunStats, this.simulationSettings));
         }
     };
 
@@ -114,6 +125,22 @@ export default class World  {
             let child = kraken.reproduce();
             if (child != null){
                 this.creatures.kraken.push(child);
+            }
+        }
+
+        // Cycle through the ArrayList backwards b/c we may be deleting
+        for (let i = this.creatures.rubberDucks.length-1; i >= 0; i--) {
+            let duck = this.creatures.rubberDucks[i];
+            duck.run();
+            duck.eat(this.creatures.kraken);
+
+            // If it's dead, kill it and make food
+            if (duck.dead()) {
+                this.creatures.rubberDucks.splice(i, 1);
+                let dna = new DNA(this.sketch);
+                dna.genes["Speed-Size"] = .4;
+                let fish = new Fish(this.sketch, duck.position, dna, this.simulationRunStats, this.simulationSettings);
+                this.creatures.fish.push(fish);
             }
         }
 

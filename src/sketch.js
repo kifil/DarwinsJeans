@@ -27,9 +27,11 @@ export default function sketch (p) {
 
     p.images = {
         krakenImg: p.loadImage("assets/images/kraken.png"),
-        shipRightImg: p.loadImage("assets/images/shipRight.png"),
         shipLeftImg: p.loadImage("assets/images/shipLeft.png"),
+        shipRightImg: p.loadImage("assets/images/shipRight.png"),
         fishImg: p.loadImage("assets/images/fish.png"),
+        rubberDuckLeftImg: p.loadImage("assets/images/rubberDuckLeft.png"),
+        rubberDuckRightImg: p.loadImage("assets/images/rubberDuckRight.png"),
     };
     p.sounds = {
         death: new Howler.Howl({src:['assets/sounds/death.wav']}),
