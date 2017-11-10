@@ -31,7 +31,7 @@ class App extends Component {
             isRunning: false
         };
 
-        //need to bind the ensure we get the component as "this" no matter where it is called
+        // Bind the ensure we get the component as "this" no matter where it is called
         this.changeCountByKey = this.changeCountByKey.bind(this);
         this.startSim = this.startSim.bind(this);
     };
@@ -129,9 +129,9 @@ class App extends Component {
                                     <Col lg={9}>
                                         <P5Wrapper
                                             sketch={sketch}
-                                            fishCount = {this.state.fishCount}
-                                            predatorCount = {this.state.krakenCount}
+                                            krakenCount = {this.state.krakenCount}
                                             shipCount = {this.state.shipCount}
+                                            fishCount = {this.state.fishCount}
                                             healthLimit = {this.state.healthLimit}
                                             foodRate = {this.state.foodRate}
                                             mutationRate = {this.state.mutationRate}
@@ -165,6 +165,6 @@ class App extends Component {
             </div>
         );
     };
-};
+}
 
 export default App;

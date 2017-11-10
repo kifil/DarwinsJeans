@@ -10,7 +10,7 @@ export default class Kraken extends Creature {
 
         // Make krakens bigger but don't affect their dna or speed
         this.r *= 1.5;
-    }
+    };
 
     getDisplayImage(){
         return this.p.images.krakenImg;

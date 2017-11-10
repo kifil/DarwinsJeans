@@ -21,7 +21,7 @@ export default class RubberDuck extends Creature {
             let distance = p5.Vector.dist(this.position, food.position);
 
             if (distance < this.r) {
-                this.simulationRunStats.shipDeaths++;
+                this.simulationRunStats.krakenDeaths++;
                 this.health += food.health;
                 foodArray.splice(i, 1);
                 this.p.sounds.getfish.play();
