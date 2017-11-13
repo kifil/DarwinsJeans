@@ -49,19 +49,13 @@ export default class World  {
 
     // Run the world
     run() {
-        var extinction = false;
-        for(let key in this.creatures){
-            if(this.creatures[key].length === 0 && key !== 'fish'){
-                extinction = true;
-                this.displayExtinction(`All the ${key} have perished!`);
-            }
-        }
-
         // There's a small chance a fish will appear randomly
         if (Math.random() < this.simulationSettings.foodRate) {
             let fish = Fish.spawn(this.sketch, null, null, this.simulationRunStats, this.simulationSettings);
             this.creatures.fish.push(fish);
         }
+
+        this.checkForExtinction();
 
         this.runCreature('fish', null);
         this.runCreature('ship', 'fish');
@@ -71,6 +65,14 @@ export default class World  {
         this.updateRunStats();
         this.display();
         window.world = this;
+    };
+
+    checkForExtinction(){
+        for(let key in this.creatures){
+            if(this.creatures[key].length === 0){
+                this.displayExtinction(`All the ${key} have perished!`);
+            }
+        }
     };
 
     runCreature(creatureType, food){
