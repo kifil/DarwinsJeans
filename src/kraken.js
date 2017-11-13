@@ -1,4 +1,5 @@
 import Creature from './creature';
+import DNA from './dna'
 import p5 from 'p5';
 
 export default class Kraken extends Creature {
@@ -50,6 +51,13 @@ export default class Kraken extends Creature {
         }
 
         return null;
+    };
+
+    static spawn(sketch, vector, dna, simulationRunStats, simulationSettings){
+        vector = vector || sketch.createVector(sketch.random(sketch.width), sketch.random(sketch.height));
+        dna = dna || new DNA(sketch);
+        dna.genes["Speed-Size"] = 0.4;
+        return new Kraken(sketch, vector, dna, simulationRunStats, simulationSettings)
     };
 
     // Death

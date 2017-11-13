@@ -104,6 +104,10 @@ export default class Creature {
         }
     };
 
+    spawn(){
+        // Not implemented
+    };
+
     dead() {
         // Not implemented
         return false;

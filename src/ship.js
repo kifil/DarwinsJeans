@@ -1,4 +1,5 @@
 import Creature from './creature';
+import DNA from './dna'
 import p5 from 'p5';
 
 export default class Ship extends Creature{
@@ -43,6 +44,12 @@ export default class Ship extends Creature{
         }
 
         return null;
+    };
+
+    static spawn(sketch, vector, dna, simulationRunStats, simulationSettings){
+        vector = vector || sketch.createVector(sketch.random(sketch.width), sketch.random(sketch.height));
+        dna = dna || new DNA(sketch);
+        return new Ship(sketch, vector, dna, simulationRunStats, simulationSettings)
     };
 
     // Death

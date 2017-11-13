@@ -1,4 +1,5 @@
 import Creature from './creature';
+import DNA from './dna'
 
 export default class Fish extends Creature{
     type = 'fish';
@@ -26,5 +27,12 @@ export default class Fish extends Creature{
     reproduce() {
         console.log('reproduce');
 
+    };
+
+    static spawn(sketch, vector, dna, simulationRunStats, simulationSettings){
+        vector = vector || sketch.createVector(sketch.random(sketch.width), sketch.random(sketch.height));
+        dna = dna || new DNA(sketch);
+        dna.genes["Speed-Size"] = 0.4;
+        return new Fish(sketch, vector, dna, simulationRunStats, simulationSettings)
     };
 }

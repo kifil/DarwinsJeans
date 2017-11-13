@@ -15,44 +15,48 @@ export default class World  {
         rubberDucks: [],
     };
 
+    typeToClassMap = {
+        fish: Fish,
+        ship: Ship,
+        kraken: Kraken,
+        rubberDuck: RubberDuck,
+    };
+
     constructor(sketch,simulationRunStats, simulationSettings){
         this.sketch = sketch;
         this.simulationRunStats = simulationRunStats;
         this.simulationSettings = simulationSettings;
 
+        this.simulationSettings.rubberDuckCount = 1;
+
         // Spawn fish
         this.creatures.fish = [];
-        let dna = new DNA(sketch);
-        dna.genes["Speed-Size"] = .4;
         for (let i = 0; i < this.simulationSettings.fishCount; i++) {
-            let vector = sketch.createVector(sketch.random(sketch.width), sketch.random(sketch.height));
-            this.creatures.fish.push(new Fish(sketch, vector, dna, this.simulationRunStats, this.simulationSettings));
+            this.spawnCreature('fish', this.creatures.fish);
         }
 
         // Spawn ships
         this.creatures.ships = [];
         for (let i = 0; i < this.simulationSettings.shipCount; i++) {
-            let vector = sketch.createVector(sketch.random(sketch.width), sketch.random(sketch.height));
-            let dna = new DNA(sketch);
-            this.creatures.ships.push(new Ship(sketch, vector, dna, this.simulationRunStats, this.simulationSettings));
+            this.spawnCreature('ship', this.creatures.ships);
         }
 
         // Spawn kraken
         this.creatures.kraken = [];
         for (let i = 0; i < this.simulationSettings.krakenCount; i++) {
-            let vector = sketch.createVector(sketch.random(sketch.width), sketch.random(sketch.height));
-            let dna = new DNA(sketch);
-            this.creatures.kraken.push(new Kraken(sketch, vector, dna, this.simulationRunStats, this.simulationSettings));
+            this.spawnCreature('kraken', this.creatures.kraken);
         }
 
-        // Spawn duck
+        // Spawn rubber duck
         this.creatures.rubberDucks = [];
-        for (let i = 0; i < 1; i++) {
-            let vector = sketch.createVector(sketch.random(sketch.width), sketch.random(sketch.height));
-            let dna = new DNA(sketch);
-            dna.genes["Speed-Size"] = 0.9;
-            this.creatures.rubberDucks.push(new RubberDuck(sketch, vector, dna, this.simulationRunStats, this.simulationSettings));
+        for (let i = 0; i < this.simulationSettings.rubberDuckCount; i++) {
+            this.spawnCreature('rubberDuck', this.creatures.rubberDucks);
         }
+    };
+
+    spawnCreature(creatureType, creatureCollection){
+        let creature = this.typeToClassMap[creatureType].spawn(this.sketch, null, null, this.simulationRunStats, this.simulationSettings);
+        creatureCollection.push(creature);
     };
 
     // Run the world
