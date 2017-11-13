@@ -1,7 +1,6 @@
 import Ship from './ship'
 import Fish from './fish'
 import Kraken from './kraken'
-import DNA from './dna'
 import RubberDuck from "./rubberduck";
 
 export default class World  {
@@ -57,26 +56,14 @@ export default class World  {
                 this.displayExtinction(`All the ${key} have perished!`);
             }
         }
-        /*if(extinction){
-            return;
-        }*/
-
-        // Run the fish
-        for (let i = this.creatures.fish.length-1; i >= 0; i--) {
-            let fish =  this.creatures.fish[i];
-            fish.run();
-        }
 
         // There's a small chance a fish will appear randomly
         if (Math.random() < this.simulationSettings.foodRate) {
-            let dna = new DNA(this.sketch);
-            dna.genes["Speed-Size"] = .4;
-            let vector = this.sketch.createVector(this.sketch.random(this.sketch.width), this.sketch.random(this.sketch.height));
-            let fish = new Fish(this.sketch, vector, dna, this.simulationRunStats, this.simulationSettings);
+            let fish = Fish.spawn(this.sketch, null, null, this.simulationRunStats, this.simulationSettings);
             this.creatures.fish.push(fish);
         }
 
-
+        this.runCreature('fish', null);
         this.runCreature('ship', 'fish');
         this.runCreature('kraken', 'ship');
         this.runCreature('rubberDuck', 'kraken');
@@ -96,9 +83,7 @@ export default class World  {
             // If it's dead, kill it and make food
             if (creature.dead()) {
                 this.creatures[creatureType].splice(i, 1);
-                let dna = new DNA(this.sketch);
-                dna.genes["Speed-Size"] = .4;
-                let fish = new Fish(this.sketch, creature.position, dna, this.simulationRunStats, this.simulationSettings);
+                let fish = Fish.spawn(this.sketch, creature.position, null, this.simulationRunStats, this.simulationSettings);
                 this.creatures.fish.push(fish);
             }
 

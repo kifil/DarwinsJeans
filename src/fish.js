@@ -25,8 +25,7 @@ export default class Fish extends Creature{
     };
 
     reproduce() {
-        console.log('reproduce');
-
+        // Don't reproduce
     };
 
     static spawn(sketch, vector, dna, simulationRunStats, simulationSettings){
