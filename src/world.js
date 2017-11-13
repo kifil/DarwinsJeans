@@ -8,11 +8,17 @@ export default class World  {
     sketch = {};
     simulationRunStats = {};
     simulationSettings = {};
+
+    /* Adding new creature types here will be automatically spawned so there's a few things to do:
+     * 1. Make sure the new creature class exists.
+     * 2. Make sure it has an entry for the new type the typeToClassMap.
+     * 3. Make sure simulationSettings contains a count for how many should spawn.
+     */
     creatures = {
         fish: [],
-        ships: [],
+        ship: [],
         kraken: [],
-        rubberDucks: [],
+        rubberDuck: [],
     };
 
     typeToClassMap = {
@@ -26,31 +32,14 @@ export default class World  {
         this.sketch = sketch;
         this.simulationRunStats = simulationRunStats;
         this.simulationSettings = simulationSettings;
-
         this.simulationSettings.rubberDuckCount = 1;
 
-        // Spawn fish
-        this.creatures.fish = [];
-        for (let i = 0; i < this.simulationSettings.fishCount; i++) {
-            this.spawnCreature('fish', this.creatures.fish);
-        }
-
-        // Spawn ships
-        this.creatures.ships = [];
-        for (let i = 0; i < this.simulationSettings.shipCount; i++) {
-            this.spawnCreature('ship', this.creatures.ships);
-        }
-
-        // Spawn kraken
-        this.creatures.kraken = [];
-        for (let i = 0; i < this.simulationSettings.krakenCount; i++) {
-            this.spawnCreature('kraken', this.creatures.kraken);
-        }
-
-        // Spawn rubber duck
-        this.creatures.rubberDucks = [];
-        for (let i = 0; i < this.simulationSettings.rubberDuckCount; i++) {
-            this.spawnCreature('rubberDuck', this.creatures.rubberDucks);
+        // Spawn creatures
+        for(let key in this.creatures){
+            this.creatures[key] = [];
+            for (let i = 0; i < this.simulationSettings[`${key}Count`]; i++) {
+                this.spawnCreature(key, this.creatures[key]);
+            }
         }
     };
 
@@ -89,14 +78,14 @@ export default class World  {
 
 
         // Cycle through the ArrayList backwards b/c we may be deleting
-        for (let i = this.creatures.ships.length-1; i >= 0; i--) {
-            let ship = this.creatures.ships[i];
+        for (let i = this.creatures.ship.length-1; i >= 0; i--) {
+            let ship = this.creatures.ship[i];
             ship.run();
             ship.eat(this.creatures.fish);
 
             // If it's dead, kill it and make food
             if (ship.dead()) {
-                this.creatures.ships.splice(i, 1);
+                this.creatures.ship.splice(i, 1);
                 let dna = new DNA(this.sketch);
                 dna.genes["Speed-Size"] = .4;
                 let fish = new Fish(this.sketch, ship.position, dna, this.simulationRunStats, this.simulationSettings);
@@ -106,7 +95,7 @@ export default class World  {
             // Reproduce
             let child = ship.reproduce();
             if (child != null){
-                this.creatures.ships.push(child);
+                this.creatures.ship.push(child);
             }
         }
 
@@ -114,7 +103,7 @@ export default class World  {
         for (let i = this.creatures.kraken.length-1; i >= 0; i--) {
             let kraken = this.creatures.kraken[i];
             kraken.run();
-            kraken.eat(this.creatures.ships);
+            kraken.eat(this.creatures.ship);
 
             // If it's dead, kill it and make food
             if (kraken.dead()) {
@@ -133,14 +122,14 @@ export default class World  {
         }
 
         // Cycle through the ArrayList backwards b/c we may be deleting
-        for (let i = this.creatures.rubberDucks.length-1; i >= 0; i--) {
-            let duck = this.creatures.rubberDucks[i];
+        for (let i = this.creatures.rubberDuck.length-1; i >= 0; i--) {
+            let duck = this.creatures.rubberDuck[i];
             duck.run();
             duck.eat(this.creatures.kraken);
 
             // If it's dead, kill it and make food
             if (duck.dead()) {
-                this.creatures.rubberDucks.splice(i, 1);
+                this.creatures.rubberDuck.splice(i, 1);
                 let dna = new DNA(this.sketch);
                 dna.genes["Speed-Size"] = .4;
                 let fish = new Fish(this.sketch, duck.position, dna, this.simulationRunStats, this.simulationSettings);
@@ -161,18 +150,18 @@ export default class World  {
 
     calculateMedianSpeedSize(){
         var geneValues = [];
-        this.creatures.ships.map(function(ship){
+        this.creatures.ship.map(function(ship){
             geneValues.push(ship.dna.genes["Speed-Size"]);
         });
 
-        this.simulationRunStats.currentPopulationShips = this.creatures.ships.length;
+        this.simulationRunStats.currentPopulationShips = this.creatures.ship.length;
         this.simulationRunStats.medianSizeSpeed = this.median(geneValues, this.simulationRunStats.medianSizeSpeed);
         this.simulationRunStats.worldTicks++;
     };
 
     calculateMedianAgingFertility(){
         var geneValues = [];
-        this.creatures.ships.map(function(ship){
+        this.creatures.ship.map(function(ship){
             geneValues.push(ship.dna.genes["Aging-Fertility"]);
         });
 
@@ -209,6 +198,6 @@ export default class World  {
     };
 
     stopRun() {
-        this.simulationRunStats.finalPopulationShips = this.creatures.ships.length;
+        this.simulationRunStats.finalPopulationShips = this.creatures.ship.length;
     };
 }
