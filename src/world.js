@@ -77,69 +77,37 @@ export default class World  {
         }
 
 
-        // Cycle through the ArrayList backwards b/c we may be deleting
-        for (let i = this.creatures.ship.length-1; i >= 0; i--) {
-            let ship = this.creatures.ship[i];
-            ship.run();
-            ship.eat(this.creatures.fish);
-
-            // If it's dead, kill it and make food
-            if (ship.dead()) {
-                this.creatures.ship.splice(i, 1);
-                let dna = new DNA(this.sketch);
-                dna.genes["Speed-Size"] = .4;
-                let fish = new Fish(this.sketch, ship.position, dna, this.simulationRunStats, this.simulationSettings);
-                this.creatures.fish.push(fish);
-            }
-
-            // Reproduce
-            let child = ship.reproduce();
-            if (child != null){
-                this.creatures.ship.push(child);
-            }
-        }
-
-        // Cycle through the ArrayList backwards b/c we may be deleting
-        for (let i = this.creatures.kraken.length-1; i >= 0; i--) {
-            let kraken = this.creatures.kraken[i];
-            kraken.run();
-            kraken.eat(this.creatures.ship);
-
-            // If it's dead, kill it and make food
-            if (kraken.dead()) {
-                this.creatures.kraken.splice(i, 1);
-                let dna = new DNA(this.sketch);
-                dna.genes["Speed-Size"] = .4;
-                let fish = new Fish(this.sketch, kraken.position, dna, this.simulationRunStats, this.simulationSettings);
-                this.creatures.fish.push(fish);
-            }
-
-            // Reproduce
-            let child = kraken.reproduce();
-            if (child != null){
-                this.creatures.kraken.push(child);
-            }
-        }
-
-        // Cycle through the ArrayList backwards b/c we may be deleting
-        for (let i = this.creatures.rubberDuck.length-1; i >= 0; i--) {
-            let duck = this.creatures.rubberDuck[i];
-            duck.run();
-            duck.eat(this.creatures.kraken);
-
-            // If it's dead, kill it and make food
-            if (duck.dead()) {
-                this.creatures.rubberDuck.splice(i, 1);
-                let dna = new DNA(this.sketch);
-                dna.genes["Speed-Size"] = .4;
-                let fish = new Fish(this.sketch, duck.position, dna, this.simulationRunStats, this.simulationSettings);
-                this.creatures.fish.push(fish);
-            }
-        }
+        this.runCreature('ship', 'fish');
+        this.runCreature('kraken', 'ship');
+        this.runCreature('rubberDuck', 'kraken');
 
         this.updateRunStats();
         this.display();
         window.world = this;
+    };
+
+    runCreature(creatureType, food){
+        // Cycle through the ArrayList backwards b/c we may be deleting
+        for (let i = this.creatures[creatureType].length-1; i >= 0; i--) {
+            let creature = this.creatures[creatureType][i];
+            creature.run();
+            creature.eat(this.creatures[food]);
+
+            // If it's dead, kill it and make food
+            if (creature.dead()) {
+                this.creatures[creatureType].splice(i, 1);
+                let dna = new DNA(this.sketch);
+                dna.genes["Speed-Size"] = .4;
+                let fish = new Fish(this.sketch, creature.position, dna, this.simulationRunStats, this.simulationSettings);
+                this.creatures.fish.push(fish);
+            }
+
+            // Reproduce
+            let child = creature.reproduce();
+            if (child != null){
+                this.creatures[creatureType].push(child);
+            }
+        }
     };
 
     updateRunStats(){
